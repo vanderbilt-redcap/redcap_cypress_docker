@@ -43,6 +43,10 @@ if [ $htmlDirLineCount = 0 ]; then
     cd ..
 fi
 
+# We've seen these directory permissions get reset for unknown reasons
+# Until we identify why this happens, the following should resolve it.
+docker exec redcap_docker-app-1 sh -c 'chown www-data temp edocs'
+
 cd redcap_cypress
 npm install --no-fund
 npm run redcap_rsvc:validate_features
