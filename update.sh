@@ -19,7 +19,7 @@ if [ "$oldUpdateScriptInfo" != "`getUpdateScriptInfo`" ]; then
 fi
 
 cd redcap_cypress/redcap_rsvc
-git fetch https://github.com/4bbakers/redcap_rsvc staging
+git fetch https://github.com/vanderbilt-redcap/redcap_rsvc staging
 rsvcBranchName=`git rev-parse --abbrev-ref HEAD`
 if [ "$rsvcBranchName" = "staging" ] || [ "$rsvcBranchName" = "main" ]; then
     # Developers shouldn't be working directly these branches.

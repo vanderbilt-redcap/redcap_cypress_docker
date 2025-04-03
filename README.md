@@ -96,7 +96,7 @@ Specifically, you will need to
 1. **Clone this repository to your machine.** [^1]
 
    ```
-   git clone git@github.com:aldefouw/redcap_cypress_docker.git
+   git clone git@github.com:vanderbilt-redcap/redcap_cypress_docker.git
    ```
 
 2. **Download Repositories**
@@ -140,7 +140,7 @@ The following should be run periodically to ensure your local environment includ
 
 ### Contribute to Feature Tests:
 
-1. Create your own fork of redcap_rsvc that is based upon https://github.com/4bbakers/redcap_rsvc
+1. Create your own fork of redcap_rsvc that is based upon https://github.com/vanderbilt-redcap/redcap_rsvc
 
 2. Configure the cloned redcap_rsvc repository as needed to match your own Fork.
 
@@ -150,7 +150,7 @@ git remote rename origin upstream
 git remote add origin <your_fork_url_here>
 ```
 
-Having your own fork enables you to issue pull requests to aldefouw/redcap_rsvc after you complete a feature.
+Having your own fork enables you to issue pull requests to vanderbilt-redcap/redcap_rsvc after you complete a feature.
 
 ### Update Repositories:
 
