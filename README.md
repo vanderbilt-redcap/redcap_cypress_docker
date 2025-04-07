@@ -2,7 +2,7 @@
 
 The REDCap Cypress Developer Toolkit provides an automated framework for validating REDCap’s core functionality. Automated testing helps ensure system integrity, reduces manual testing burden, and supports institutions in meeting regulatory compliance requirements (e.g., 21 CFR Part 11).
 
-The toolkit was originally developed by the RSVC Automated Testing Subcommittee (ATS) and is now maintained by Vanderbilt University Medical Center (VUMC). RSVC continues to contribute to updates and actively uses the toolkit for REDCap validation efforts.
+The toolkit was the brain child of Adam De Fouw, who rightfully deserves the bulk of the credit for getting it off the ground.  This and all related projects were originally developed by him and the RSVC Automated Testing Subcommittee (ATS).  They are now maintained by Vanderbilt University Medical Center (VUMC). RSVC continues to contribute to updates and actively uses the toolkit for REDCap validation efforts.
 
 This repository includes scripts to download all the necessary components for a developer to begin developing automated feature tests on their developer machine.  This toolkit is based on the industry-standard [Cypress Testing Framework](https://github.com/cypress-io/cypress/blob/develop/README.md).
 
