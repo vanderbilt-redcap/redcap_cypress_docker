@@ -134,7 +134,7 @@ else
     url="https://redcap.vanderbilt.edu/plugins/redcap_consortium/versions.php"
 
     # Perform the curl request with username and password
-    curl -v -o ${zip_file} --data username=$username --data-urlencode password=$password --data version=$redcap_version --data install=1 -X POST ${url}
+    curl -o ${zip_file} --data username=$username --data-urlencode password=$password --data version=$redcap_version --data install=1 -X POST ${url}
 
     if [ $? -eq 0 ]; then
         attempt_unzip_redcap "${zip_file}"
