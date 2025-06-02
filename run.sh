@@ -2,6 +2,12 @@
 
 set -e
 
+# We used to commit submodule changes to this repo, but now update them automatically via update.sh
+# The following lines prevent any pulled changes from appearing in VS Code
+# and confusing developers who often only care about redcap_rsvc
+git config submodule.redcap_cypress.ignore all
+git config submodule.redcap_docker.ignore all
+
 redcapVersion=`cat redcap_cypress/.circleci/config.yml |grep 'REDCAP_VERSION:'|cut -d'"' -f 2`
 if [ ! -d "redcap_source/redcap_v$redcapVersion" ]; then
     ./download_redcap.sh $redcapVersion

@@ -10,7 +10,7 @@ getUpdateScriptInfo () {
 oldUpdateScriptInfo=`getUpdateScriptInfo`
 
 git checkout main > /dev/null
-git pull --recurse-submodules
+git pull
 
 if [ "$oldUpdateScriptInfo" != "`getUpdateScriptInfo`" ]; then
     echo A changed to update.sh was detected.  Restarting this script...
@@ -37,6 +37,13 @@ else
 fi
 cd ../..
 
+cd redcap_cypress
+git checkout master
+git pull
+cd ..
+
 cd redcap_docker
+git checkout main
+git pull
 docker compose down # This ensures a running container is restarted, which can fix various docker issues.
 docker compose up -d --build # This ensures the container is rebuilt to include any Dockerfile changes, other updates, or fix various issues.
