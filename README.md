@@ -110,21 +110,13 @@ Specifically, you will need to
 
    This script also configures base settings for Cypress.
 
-3. **Download REDCap**
-
-   Execute download_redcap.sh to download specific version of REDCap you need. [^2]
-
-   ```
-   ./download_redcap.sh
-   ```
-
-   Follow onscreen prompts. **This step requires credentials for REDCap Community site.**
-
 ### Changing REDCap Versions
 
 To test against a different version of REDCap, simply run `./download_redcap.sh` again and specify the desired version.
 
 ### Start REDCap Test Environment:
+
+Run the following from the command line to start the test environment.  You will be prompted for REDCap Community site credentials in order to download REDCap the first time you run this and after certain updates.
 
 ```
 ./run.sh

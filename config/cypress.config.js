@@ -20,7 +20,7 @@ module.exports = defineConfig({
         experimentalMemoryManagement: false,
         numTestsKeptInMemory: 0,
         retries: {
-            runMode: 2,
+            runMode: 0,
             openMode: 0
         },
         video: true,
@@ -28,9 +28,9 @@ module.exports = defineConfig({
         trashAssetsBeforeRuns: true,
         viewportWidth: 1600,
         viewportHeight: 1200,
-        defaultCommandTimeout: 60000,
-        responseTimeout: 60000,
-        requestTimeout: 60000,
+        defaultCommandTimeout: 20000,
+        responseTimeout: 20000,
+        requestTimeout: 20000,
         chromeWebSecurity: false,
         scrollBehavior: 'bottom',
         watchForFileChanges: false,

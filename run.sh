@@ -2,6 +2,17 @@
 
 set -e
 
+# We used to commit submodule changes to this repo, but now update them automatically via update.sh
+# The following lines prevent any pulled changes from appearing in VS Code
+# and confusing developers who often only care about redcap_rsvc
+git config submodule.redcap_cypress.ignore all
+git config submodule.redcap_docker.ignore all
+
+redcapVersion=`cat redcap_cypress/.circleci/config.yml |grep 'REDCAP_VERSION:'|cut -d'"' -f 2`
+if [ ! -d "redcap_source/redcap_v$redcapVersion" ]; then
+    ./download_redcap.sh $redcapVersion
+fi
+
 cd redcap_docker
 docker compose up -d
 cd ..
@@ -28,7 +39,7 @@ if [ $htmlDirLineCount = 0 ]; then
     filesDiffer=$?
     set -e
 
-    if [ $filesDiffer ]; then
+    if [ "$filesDiffer" -ne "0" ]; then
         echo Copying new REDCap version directories into the docker container...
         tar -cz --exclude-from=temp/docker-file-list -f ../redcap_source.tar.gz .
         docker cp ../redcap_source.tar.gz redcap_docker-app-1:/var/www/html/redcap_source.tar.gz
@@ -48,8 +59,14 @@ fi
 docker exec redcap_docker-app-1 sh -c 'chown www-data temp edocs'
 
 cd redcap_cypress
-npm install --no-fund
-npm run redcap_rsvc:validate_features
+# We add the "--no" arguments to simplify output for less technical users.
+# We don't really care about vulnerabilities since we're not hosting this project
+npm install --no-fund --no-audit 
+
+rctfPath="../../rctf/"
+if [ -d "$rctfPath" ]; then
+    npm link $rctfPath
+fi
 
 # Ideally we'd call "npm run redcap_rsvc:move_files" here instead of the following lines,
 # but we can't do that currently because "redcap_rsvc:move_files" contains
@@ -57,6 +74,13 @@ npm run redcap_rsvc:validate_features
 # a cloud environment in its current form (would cause problems for local development).
 rm -rf cypress/fixtures/cdisc_files cypress/fixtures/dictionaries cypress/fixtures/import_files
 cp -a redcap_rsvc/Files/* cypress/fixtures/
+
+continueFeaturePath="cypress/features/Continue Last Run.feature"
+if [ ! -f "$continueFeaturePath" ]; then
+    echo "Feature: Continue Last Run
+    Scenario: Continue Last Run
+        Given I replace this step with whatever step(s) I want to test on the fly" > "$continueFeaturePath"
+fi
 
 if [[ "$OSTYPE" == "msys" ]]; then
     # Work around this issue in Git Bash: https://github.com/cypress-io/cypress/issues/789

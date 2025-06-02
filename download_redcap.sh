@@ -13,6 +13,7 @@ attempt_unzip_redcap() {
 
         #Target Directory
         target_directory=./tmp
+        rm -rf $target_directory # Clean up after any previous failed calls
         mkdir -p $target_directory
 
         # Define the destination directory
@@ -34,7 +35,7 @@ attempt_unzip_redcap() {
                 if [ -e "$redcap_source_dir" ]; then
 
                   #Empty destination (what we want)
-                  if [ -z "$(ls -A "$destination_directory")" ]; then
+                  if [ ! -d $destination_directory ]; then
 
                       #We are just copying the specific folder we need - not the whole install!
                       mv ${target_directory}/redcap/redcap_v${redcap_version} ${destination_directory}
@@ -91,7 +92,12 @@ attempt_unzip_redcap() {
 }
 
 ## What version of REDCap
-read -p "Enter REDCap version you want to install: " redcap_version
+if [ "$1" == "" ]; then
+    echo "The REDCap version must be specified as an argument."
+    exit
+fi
+
+redcap_version=$1
 
 # Get existing REDCap version from redcap_cypress/cypress.env.json
 CYPRESS_ENV_FILE="./redcap_cypress/cypress.env.json"
@@ -102,14 +108,9 @@ CYPRESS_REDCAP_VERSION_LINE=$(grep -i "redcap_version" $CYPRESS_ENV_FILE)
 # Get the version number from the line
 CURRENT_VERSION=$(echo $CYPRESS_REDCAP_VERSION_LINE | sed -n 's/.*"redcap_version": "\([^"]*\)".*/\1/p')
 
-# Prompt the user for confirmation before replacing the version
-REPLACE_VERSION="N"
-read -p "Configured REDCap version in cypress.env.json is ${CURRENT_VERSION} do you want to replace with ${redcap_version}? (y/${REPLACE_VERSION}):" REPLACE_VERSION
 
-# Replace the version if the user confirms
-if [ "${REPLACE_VERSION}" == "y" ]; then
-    error=$(find "${CYPRESS_ENV_FILE}" -type f -exec sed -i -e "s/$CURRENT_VERSION/${redcap_version}/g" {} \;) || echo "FAILED:\n$error"
-fi
+# Replace the version without prompting the user
+error=$(find "${CYPRESS_ENV_FILE}" -type f -exec sed -i -e "s/$CURRENT_VERSION/${redcap_version}/g" {} \;) || echo "FAILED:\n$error"
 
 # Zip file
 zip_file="./redcap${redcap_version}.zip"
@@ -131,7 +132,7 @@ else
     echo
 
     # URL of the file to download
-    url="https://redcap.vanderbilt.edu/plugins/redcap_consortium/versions.php"
+    url="https://redcap.vumc.org/plugins/redcap_consortium/versions.php"
 
     # Perform the curl request with username and password
     curl -o ${zip_file} --data username=$username --data-urlencode password=$password --data version=$redcap_version --data install=1 -X POST ${url}
