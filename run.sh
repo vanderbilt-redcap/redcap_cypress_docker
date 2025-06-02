@@ -58,6 +58,13 @@ npm run redcap_rsvc:validate_features
 rm -rf cypress/fixtures/cdisc_files cypress/fixtures/dictionaries cypress/fixtures/import_files
 cp -a redcap_rsvc/Files/* cypress/fixtures/
 
+continueFeaturePath="cypress/features/Continue Last Run.feature"
+if [ ! -f "$continueFeaturePath" ]; then
+    echo "Feature: Continue Last Run
+    Scenario: Continue Last Run
+        Given I replace this step with whatever step(s) I want to test on the fly" > "$continueFeaturePath"
+fi
+
 if [[ "$OSTYPE" == "msys" ]]; then
     # Work around this issue in Git Bash: https://github.com/cypress-io/cypress/issues/789
     SHELL=''
