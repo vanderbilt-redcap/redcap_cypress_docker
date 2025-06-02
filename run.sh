@@ -2,6 +2,11 @@
 
 set -e
 
+redcapVersion=`cat redcap_cypress/.circleci/config.yml |grep 'REDCAP_VERSION:'|cut -d'"' -f 2`
+if [ ! -d "redcap_source/redcap_v$redcapVersion" ]; then
+    ./download_redcap.sh $redcapVersion
+fi
+
 cd redcap_docker
 docker compose up -d
 cd ..
