@@ -102,14 +102,9 @@ CYPRESS_REDCAP_VERSION_LINE=$(grep -i "redcap_version" $CYPRESS_ENV_FILE)
 # Get the version number from the line
 CURRENT_VERSION=$(echo $CYPRESS_REDCAP_VERSION_LINE | sed -n 's/.*"redcap_version": "\([^"]*\)".*/\1/p')
 
-# Prompt the user for confirmation before replacing the version
-REPLACE_VERSION="N"
-read -p "Configured REDCap version in cypress.env.json is ${CURRENT_VERSION} do you want to replace with ${redcap_version}? (y/${REPLACE_VERSION}):" REPLACE_VERSION
 
-# Replace the version if the user confirms
-if [ "${REPLACE_VERSION}" == "y" ]; then
-    error=$(find "${CYPRESS_ENV_FILE}" -type f -exec sed -i -e "s/$CURRENT_VERSION/${redcap_version}/g" {} \;) || echo "FAILED:\n$error"
-fi
+# Replace the version without prompting the user
+error=$(find "${CYPRESS_ENV_FILE}" -type f -exec sed -i -e "s/$CURRENT_VERSION/${redcap_version}/g" {} \;) || echo "FAILED:\n$error"
 
 # Zip file
 zip_file="./redcap${redcap_version}.zip"
