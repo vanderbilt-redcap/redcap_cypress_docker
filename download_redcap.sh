@@ -13,7 +13,7 @@ attempt_unzip_redcap() {
 
         #Target Directory
         target_directory=./tmp
-        rm -r $target_directory # Clean up after any previous failed calls
+        rm -rf $target_directory # Clean up after any previous failed calls
         mkdir -p $target_directory
 
         # Define the destination directory
