@@ -91,7 +91,12 @@ attempt_unzip_redcap() {
 }
 
 ## What version of REDCap
-read -p "Enter REDCap version you want to install: " redcap_version
+if [ "$1" == "" ]; then
+    echo "The REDCap version must be specified as an argument."
+    exit
+fi
+
+redcap_version=$1
 
 # Get existing REDCap version from redcap_cypress/cypress.env.json
 CYPRESS_ENV_FILE="./redcap_cypress/cypress.env.json"
