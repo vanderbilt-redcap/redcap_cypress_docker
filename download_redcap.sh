@@ -35,7 +35,7 @@ attempt_unzip_redcap() {
                 if [ -e "$redcap_source_dir" ]; then
 
                   #Empty destination (what we want)
-                  if [ -z "$(ls -A "$destination_directory")" ]; then
+                  if [ ! -d $destination_directory ]; then
 
                       #We are just copying the specific folder we need - not the whole install!
                       mv ${target_directory}/redcap/redcap_v${redcap_version} ${destination_directory}
