@@ -28,7 +28,7 @@ if [ $htmlDirLineCount = 0 ]; then
     filesDiffer=$?
     set -e
 
-    if [ $filesDiffer ]; then
+    if [ "$filesDiffer" -ne "0" ]; then
         echo Copying new REDCap version directories into the docker container...
         tar -cz --exclude-from=temp/docker-file-list -f ../redcap_source.tar.gz .
         docker cp ../redcap_source.tar.gz redcap_docker-app-1:/var/www/html/redcap_source.tar.gz
