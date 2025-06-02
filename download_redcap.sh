@@ -131,7 +131,7 @@ else
     echo
 
     # URL of the file to download
-    url="https://redcap.vanderbilt.edu/plugins/redcap_consortium/versions.php"
+    url="https://redcap.vumc.org/plugins/redcap_consortium/versions.php"
 
     # Perform the curl request with username and password
     curl -o ${zip_file} --data username=$username --data-urlencode password=$password --data version=$redcap_version --data install=1 -X POST ${url}
