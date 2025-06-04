@@ -90,4 +90,4 @@ if [[ "$OSTYPE" == "msys" ]]; then
     SHELL=''
 fi
 
-npx cypress open
+npx cypress open --e2e --browser chrome
