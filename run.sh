@@ -33,7 +33,7 @@ if [ $htmlDirLineCount = 0 ]; then
     # The following commands must give identical output on docker, git bash, mac terminal, etc.
     # The trailing slash is removed to match output between platforms,
     # and so the output can be uses for tar's "--exclude-from" option below.
-    lsCommand='ls -1d redcap_v* | cut -d/ -f 1'
+    lsCommand='ls -1d redcap_v* 2>/dev/null | cut -d/ -f 1'
 
     sh -c "$lsCommand" > temp/dev-file-list
     set +e # Disable failing on errors in case all redcap_v* dirs have been removed and to capture the diff return code
