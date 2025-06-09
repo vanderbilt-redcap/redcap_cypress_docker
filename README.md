@@ -31,14 +31,6 @@ Not all REDCap features are suitable for automation. When determining which feat
 For each REDCap release, RSVC reviews system changes and determines which features should be tested manually and which can be automated.
 
 
-# Windows Tutorial Video
-
-[![Windows Tutorial Video](tutorial-windows.png)](https://youtu.be/cQhp9Om8Cgk "Windows Tutorial Video")
-
-# macOS Tutorial Video
-
-[![macOS Tutorial Video](tutorial-macos.png)](https://youtu.be/AyR-YFNrlZI "macOS Tutorial Video")
-
 # Overview
 
 - [Software Prerequisites](#software-prerequisites)
@@ -129,6 +121,14 @@ The following should be run periodically to ensure your local environment includ
 ```
 ./update.sh
 ```
+
+### Deprecated Tutorial Videos
+
+The following videos have been deprecated since the steps have been modified & simplified significantly since they were created.  We keep them for reference:
+
+~~[Windows Tutorial Video](https://youtu.be/cQhp9Om8Cgk)~~
+
+~~[macOS Tutorial Video](https://youtu.be/AyR-YFNrlZI)~~
 
 ### Contribute to Feature Tests:
 

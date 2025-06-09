@@ -13,6 +13,9 @@ if [ ! -d "redcap_source/redcap_v$redcapVersion" ]; then
     ./download_redcap.sh $redcapVersion
 fi
 
+# Ensure the correct version of REDCap is used even if we're switching back and forth between redcap_cypress branches.
+sed -i '/  "redcap_version": ".*",/c\  "redcap_version": "'${redcapVersion}'",' redcap_cypress/cypress.env.json
+
 cd redcap_docker
 docker compose up -d
 cd ..
@@ -30,7 +33,7 @@ if [ $htmlDirLineCount = 0 ]; then
     # The following commands must give identical output on docker, git bash, mac terminal, etc.
     # The trailing slash is removed to match output between platforms,
     # and so the output can be uses for tar's "--exclude-from" option below.
-    lsCommand='ls -1d redcap_v* | cut -d/ -f 1'
+    lsCommand='ls -1d redcap_v* 2>/dev/null | cut -d/ -f 1'
 
     sh -c "$lsCommand" > temp/dev-file-list
     set +e # Disable failing on errors in case all redcap_v* dirs have been removed and to capture the diff return code
@@ -87,4 +90,4 @@ if [[ "$OSTYPE" == "msys" ]]; then
     SHELL=''
 fi
 
-npx cypress open
+npx cypress open --e2e --browser chrome
