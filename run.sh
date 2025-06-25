@@ -51,15 +51,15 @@ if [ $htmlDirLineCount = 0 ]; then
             cd /var/www/html
             tar xzf redcap_source.tar.gz
             rm redcap_source.tar.gz
+            
+            # We used to use chown here, but that broke when we switched to a different docker base image.
+            # Changing the permissions to 777 should work regardless of any future base image changes
+            chmod 777 temp edocs
         " 
     fi
     
     cd ..
 fi
-
-# We've seen these directory permissions get reset for unknown reasons
-# Until we identify why this happens, the following should resolve it.
-docker exec redcap_docker-app-1 sh -c 'chown www-data temp edocs'
 
 cd redcap_cypress
 # We add the "--no" arguments to simplify output for less technical users.
