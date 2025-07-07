@@ -10,6 +10,7 @@ git config submodule.redcap_docker.ignore all
 
 redcapVersion=`cat redcap_cypress/.circleci/config.yml |grep 'REDCAP_VERSION:'|cut -d'"' -f 2`
 if [ ! -d "redcap_source/redcap_v$redcapVersion" ]; then
+    echo "The version of REDCap used for testing has changed.  The new version must be downloaded."
     ./download_redcap.sh $redcapVersion
 fi
 
