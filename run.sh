@@ -21,7 +21,7 @@ cd redcap_docker
 docker compose up -d
 cd ..
 
-htmlDirLineCount=`docker inspect -f '{{ .Mounts }}' redcap_docker-app-1 | grep /var/www/html | wc -l`
+htmlDirLineCount=`cat redcap_docker/docker-compose.yml | grep -v '#' | grep '../redcap_source' | wc -l`
 if [ $htmlDirLineCount = 0 ]; then
     # Reaching this point means the redcap_source dir is not being mounted in the container via the volumes section
     # of docker-composer.yml, and should be copied into the container instead.
