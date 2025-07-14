@@ -3,6 +3,8 @@
 # The following line is important to ensure this script stops if this repo or submodules have oustanding changes that would prevent a git pull.
 set -e
 
+set -x
+
 getUpdateScriptInfo () {
   ls -l update.sh
 }
