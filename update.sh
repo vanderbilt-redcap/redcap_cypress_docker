@@ -42,6 +42,10 @@ cd ../..
 cd redcap_cypress
 git checkout master
 git pull
+# Adam Lewis had an instance where cypress started throwing confusing errors on every feature which was resolved by the following steps:
+rm node_modules -r
+npm cache clean --force
+npm install --no-fund --no-audit
 cd ..
 
 cd redcap_docker
