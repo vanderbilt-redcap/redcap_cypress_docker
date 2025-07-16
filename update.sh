@@ -51,5 +51,5 @@ cd ..
 cd redcap_docker
 git checkout main
 git pull
-docker compose down # This ensures a running container is restarted, which can fix various docker issues.
+docker compose --profile external-storage --profile sftp down # This ensures a running container is restarted, which can fix various docker issues.
 docker compose up -d --build --remove-orphans # This ensures the container is rebuilt to include any Dockerfile changes, other updates, or fix various issues.
