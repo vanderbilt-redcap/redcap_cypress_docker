@@ -66,6 +66,7 @@ cd redcap_cypress
 # We add the "--no" arguments to simplify output for less technical users.
 # We don't really care about vulnerabilities since we're not hosting this project
 npm install --no-fund --no-audit 
+npm explore rctf -- npm run generate:hints
 
 rctfPath="../../rctf/"
 if [ -d "$rctfPath" ]; then
