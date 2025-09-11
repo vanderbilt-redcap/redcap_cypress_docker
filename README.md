@@ -60,7 +60,9 @@ A developer needs the following software on their machine before installing this
     - [Xcode](https://developer.apple.com/xcode/) - shipped as a binary package
   - [for Linux](https://git-scm.com/download/linux)
 
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) - available for Windows, macOS, Linux
+- [Rancher Desktop](https://rancherdesktop.io/) - This is a drop-in replacement for [Docker Desktop](https://www.docker.com/products/docker-desktop/), which is still supported but not allowed at some organizations (like VUMC).
+  - You may want to set Rancher to `Automatically start on login` and `Start in the background` under `Preferences -> Application -> Behavior`
+  - If you've previously had Docker Desktop installed, you may have to run `docker context use default` before Rancher will work as expected.
 - [Node.js](https://nodejs.org/en/download) - available for Windows, macOS, Linux
 - [VS Code](https://code.visualstudio.com/) - This is the recommended [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment), but others may be used as well (e.g. PhpStorm).  Be mindful that **Visual Studio Code** is most often referred to as **VS Code** in part to distinguish it from a different application simply called **Visual Studio** which we do not use.
 - [Cucumber Extension for VS Code by cucumber.io](https://marketplace.visualstudio.com/items?itemName=CucumberOpen.cucumber-official)
