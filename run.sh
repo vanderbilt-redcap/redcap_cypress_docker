@@ -24,7 +24,7 @@ cd ..
 htmlDirLineCount=`cat redcap_docker/docker-compose.yml | grep -v '#' | grep '../redcap_source' | wc -l`
 if [ $htmlDirLineCount = 0 ]; then
     # Reaching this point means the redcap_source dir is not being mounted in the container via the volumes section
-    # of docker-composer.yml, and should be copied into the container instead.
+    # of docker-compose.yml, and should be copied into the container instead.
     # We used to mount the redcap_source dir as a docker volume,
     # but this made many features take roughly 3 times as long on Windows,
     # due to cross filesystem performance limitations and Microsoft Defender on the fly scans.
