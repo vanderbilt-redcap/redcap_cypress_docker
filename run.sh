@@ -31,32 +31,19 @@ if [ $htmlDirLineCount = 0 ]; then
 
     cd redcap_source
 
-    # The following commands must give identical output on docker, git bash, mac terminal, etc.
-    # The trailing slash is removed to match output between platforms,
-    # and so the output can be uses for tar's "--exclude-from" option below.
-    lsCommand='ls -1d redcap_v* 2>/dev/null | cut -d/ -f 1'
-
-    sh -c "$lsCommand" > temp/dev-file-list
-    set +e # Disable failing on errors in case all redcap_v* dirs have been removed and to capture the diff return code
-    docker exec redcap_docker-app-1 sh -c "$lsCommand" > temp/docker-file-list
-    diff temp/dev-file-list temp/docker-file-list > /dev/null
-    filesDiffer=$?
-    set -e
-
-    if [ "$filesDiffer" -ne "0" ]; then
+    if docker exec redcap_docker-app-1 test -d redcap_v$redcapVersion; then
+        # No need to copy if the current redcap version is already there
+        echo
+    else
+        # This could be an initial run or a newly added redcap version.
         echo Copying new REDCap version directories into the docker container...
-        tar -cz --exclude-from=temp/docker-file-list -f ../redcap_source.tar.gz .
-        docker cp ../redcap_source.tar.gz redcap_docker-app-1:/var/www/html/redcap_source.tar.gz
-        rm ../redcap_source.tar.gz
-        docker exec redcap_docker-app-1 sh -c "
-            cd /var/www/html
-            tar xzf redcap_source.tar.gz
-            rm redcap_source.tar.gz
-            
-            # We used to use chown here, but that broke when we switched to a different docker base image.
-            # Changing the permissions to 777 should work regardless of any future base image changes
-            chmod 777 temp edocs
-        " 
+        
+        # This command copies the current redcap_v* dir and ever other file under redcap_source except other redcap_v* dirs.
+        ls -1| grep -v redcap_v | cat - <(echo redcap_v$redcapVersion) | xargs -I {} docker cp "{}" redcap_docker-app-1:/var/www/html
+
+        # We used to use chown here, but that broke when we switched to a different docker base image.
+        # Changing the permissions to 777 should work regardless of any future base image changes
+        docker exec redcap_docker-app-1 chmod 777 temp edocs
     fi
     
     cd ..
