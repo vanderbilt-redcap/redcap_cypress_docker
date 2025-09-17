@@ -15,7 +15,15 @@ if [ ! -d "redcap_source/redcap_v$redcapVersion" ]; then
 fi
 
 # Ensure the correct version of REDCap is used even if we're switching back and forth between redcap_cypress branches.
-sed -i '/  "redcap_version": ".*",/c\  "redcap_version": "'${redcapVersion}'",' redcap_cypress/cypress.env.json
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	# MacOS uses the BSD version of sed
+	sed -i '' '/  "redcap_version": ".*",/c\
+	  "redcap_version": "'${redcapVersion}'",
+	  ' redcap_cypress/cypress.env.json
+else 
+	# Windows uses the GNU version of sed
+	sed -i '/  "redcap_version": ".*",/c\  "redcap_version": "'${redcapVersion}'",' redcap_cypress/cypress.env.json
+fi
 
 cd redcap_docker
 docker compose up -d
