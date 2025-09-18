@@ -59,8 +59,14 @@ cd ..
 
 echo Updating redcap_docker...
 cd redcap_docker
-git checkout main
 git pull
+git fetch https://github.com/vanderbilt-redcap/redcap_docker main
+commitsBehindMain=`git log --oneline ..FETCH_HEAD | wc -l`
+if [ $commitsBehindMain != 0 ]; then
+    echo
+    echo Please either checkout the main branch for redcap_docker, or merge it into your working branch.
+    exit
+fi
 docker compose --profile external-storage --profile sftp down # This ensures a running container is restarted, which can fix various docker issues.
 docker compose up -d --build --remove-orphans # This ensures the container is rebuilt to include any Dockerfile changes, other updates, or fix various issues.
 
