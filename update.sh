@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# The following line is important to ensure this script stops if this repo or submodules have oustanding changes that would prevent a git pull.
+# The following line is important to ensure this script stops if any repos have outstanding changes that would prevent a git pull.
 set -e
 
 set -x

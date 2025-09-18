@@ -146,18 +146,6 @@ git remote add origin <your_fork_url_here>
 
 Having your own fork enables you to issue pull requests to vanderbilt-redcap/redcap_rsvc after you complete a feature.
 
-### Update Repositories:
-
-Execute ./update_repos.sh from this repository.
-
-```
-./update_repos.sh
-```
-
-This will resync your Developer Toolkit to the latest versions.
-
-**Caution:** _Only do this if you understand what the implications of updating submodules are._
-
 ## Additional Information
 
 ### Rebuild Docker Containers
