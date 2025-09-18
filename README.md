@@ -93,17 +93,6 @@ Specifically, you will need to
    git clone git@github.com:vanderbilt-redcap/redcap_cypress_docker.git
    ```
 
-2. **Download Repositories**
-
-   Execute download_repos.sh to download the repositories. [^2]
-
-   ```
-   cd redcap_cypress_docker
-   ./download_repos.sh
-   ```
-
-   This script also configures base settings for Cypress.
-
 ### Changing REDCap Versions
 
 To test against a different version of REDCap, simply run `./download_redcap.sh` again and specify the desired version.
