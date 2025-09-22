@@ -58,7 +58,7 @@ attempt_unzip_redcap() {
                   fi
 
                   #This database.php is specifically configured for this Docker container DB setup
-                  cp ./config/database.php ./redcap_source/database.php
+                  cp ./redcap_cypress/.circleci/redcap_install_files/database.php ./redcap_source/database.php
                   if [ $? -eq 0 ]; then
                     echo "Database connection successfully configured."
                   fi

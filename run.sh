@@ -2,11 +2,19 @@
 
 set -e
 
-# We used to commit submodule changes to this repo, but now update them automatically via update.sh
-# The following lines prevent any pulled changes from appearing in VS Code
-# and confusing developers who often only care about redcap_rsvc
-git config submodule.redcap_cypress.ignore all
-git config submodule.redcap_docker.ignore all
+if [ ! -d "redcap_cypress" ]; then
+    git clone git@github.com:vanderbilt-redcap/redcap_cypress.git
+    git clone git@github.com:vanderbilt-redcap/redcap_docker.git
+
+    #Move Base Configurations for Cypress
+    cp ./redcap_cypress/cypress.config.js.example ./redcap_cypress/cypress.config.js
+    awk '{ gsub(/"temp_folder": ".*",/, "\"temp_folder\": \"/var/www/html/temp\","); print }' ./redcap_cypress/cypress.env.json.example > ./redcap_cypress/cypress.env.json
+
+    #Install the REDCap RSVC repository so automated feature tests can run
+    cd redcap_cypress
+    git clone git@github.com:vanderbilt-redcap/redcap_rsvc.git
+    cd ..
+fi
 
 redcapVersion=`cat redcap_cypress/.circleci/config.yml |grep 'REDCAP_VERSION:'|cut -d'"' -f 2`
 if [ ! -d "redcap_source/redcap_v$redcapVersion" ]; then
@@ -32,39 +40,26 @@ cd ..
 htmlDirLineCount=`cat redcap_docker/docker-compose.yml | grep -v '#' | grep '../redcap_source' | wc -l`
 if [ $htmlDirLineCount = 0 ]; then
     # Reaching this point means the redcap_source dir is not being mounted in the container via the volumes section
-    # of docker-composer.yml, and should be copied into the container instead.
+    # of docker-compose.yml, and should be copied into the container instead.
     # We used to mount the redcap_source dir as a docker volume,
     # but this made many features take roughly 3 times as long on Windows,
     # due to cross filesystem performance limitations and Microsoft Defender on the fly scans.
 
     cd redcap_source
 
-    # The following commands must give identical output on docker, git bash, mac terminal, etc.
-    # The trailing slash is removed to match output between platforms,
-    # and so the output can be uses for tar's "--exclude-from" option below.
-    lsCommand='ls -1d redcap_v* 2>/dev/null | cut -d/ -f 1'
-
-    sh -c "$lsCommand" > temp/dev-file-list
-    set +e # Disable failing on errors in case all redcap_v* dirs have been removed and to capture the diff return code
-    docker exec redcap_docker-app-1 sh -c "$lsCommand" > temp/docker-file-list
-    diff temp/dev-file-list temp/docker-file-list > /dev/null
-    filesDiffer=$?
-    set -e
-
-    if [ "$filesDiffer" -ne "0" ]; then
+    if docker exec redcap_docker-app-1 test -d redcap_v$redcapVersion; then
+        # No need to copy if the current redcap version is already there
+        echo
+    else
+        # This could be an initial run or a newly added redcap version.
         echo Copying new REDCap version directories into the docker container...
-        tar -cz --exclude-from=temp/docker-file-list -f ../redcap_source.tar.gz .
-        docker cp ../redcap_source.tar.gz redcap_docker-app-1:/var/www/html/redcap_source.tar.gz
-        rm ../redcap_source.tar.gz
-        docker exec redcap_docker-app-1 sh -c "
-            cd /var/www/html
-            tar xzf redcap_source.tar.gz
-            rm redcap_source.tar.gz
-            
-            # We used to use chown here, but that broke when we switched to a different docker base image.
-            # Changing the permissions to 777 should work regardless of any future base image changes
-            chmod 777 temp edocs
-        " 
+        
+        # This command copies the current redcap_v* dir and ever other file under redcap_source except other redcap_v* dirs.
+        ls -1| grep -v redcap_v | cat - <(echo redcap_v$redcapVersion) | xargs -I {} docker cp "{}" redcap_docker-app-1:/var/www/html
+
+        # We used to use chown here, but that broke when we switched to a different docker base image.
+        # Changing the permissions to 777 should work regardless of any future base image changes
+        docker exec redcap_docker-app-1 chmod 777 temp edocs
     fi
     
     cd ..

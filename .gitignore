@@ -1,5 +1,5 @@
-redcap_cypress/*
-redcap_docker/*
+/redcap_cypress
+/redcap_docker
 redcap_source/*
 /redcap_source.tar.gz
 rctf/*
