@@ -70,9 +70,6 @@ attempt_unzip_redcap() {
                   echo "Cleaned up temporary files."
                 fi
 
-                echo "Configuring Cypress to use REDCap v${redcap_version}"
-                sed -i '/  "redcap_version": ".*",/c\  "redcap_version": "'${redcap_version}'",' redcap_cypress/cypress.env.json
-
             else
                 echo "Failed to unzip the file."
             fi
