@@ -70,17 +70,6 @@ attempt_unzip_redcap() {
                   echo "Cleaned up temporary files."
                 fi
 
-                echo "Configuring Cypress to use REDCap v${redcap_version}"
-				if [[ "$OSTYPE" == "darwin"* ]]; then
-					# MacOS uses the BSD version of sed
-					sed -i '' '/  "redcap_version": ".*",/c\
-					  "redcap_version": "'${redcap_version}'",
-					  ' redcap_cypress/cypress.env.json
-				else 
-					# Windows uses the GNU version of sed
-					sed -i '/  "redcap_version": ".*",/c\  "redcap_version": "'${redcap_version}'",' redcap_cypress/cypress.env.json
-				fi
-
             else
                 echo "Failed to unzip the file."
             fi
