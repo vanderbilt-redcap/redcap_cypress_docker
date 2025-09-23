@@ -95,7 +95,11 @@ Specifically, you will need to
 
 ### Changing REDCap Versions
 
-To test against a different version of REDCap, simply run `./download_redcap.sh` again and specify the desired version.
+To test against a different version of REDCap, simply update the **REDCAP_VERSION** variable in the **config.yml** file in the **/redcap_cypress/.circleci/** folder to your target REDCap version.
+
+  ```
+  REDCAP_VERSION: "15.5.7"
+  ```
 
 ### Start REDCap Test Environment:
 
