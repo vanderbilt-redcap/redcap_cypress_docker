@@ -141,6 +141,8 @@ Having your own fork enables you to issue pull requests to vanderbilt-redcap/red
 
 ## Additional Information
 
+For more information about the innerworkings, see the [REDCap Cypress Test Suite Docs](https://github.com/vanderbilt-redcap/redcap_cypress/blob/master/README.md)
+
 ### Issues and Resolutions:
 
 [^1]: Git Clone Fail: If the message says you do not have permissions or mentions a public key, you might need to setup a [SSH key with Github](#ssh-key-in-github-account).
