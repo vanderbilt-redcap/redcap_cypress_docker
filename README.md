@@ -141,14 +141,6 @@ Having your own fork enables you to issue pull requests to vanderbilt-redcap/red
 
 ## Additional Information
 
-### Rebuild Docker Containers
-
-If changes are made to the Docker images, you will need to rebuild your containers before spooling them up.
-
-```
-docker compose build
-```
-
 ### Issues and Resolutions:
 
 [^1]: Git Clone Fail: If the message says you do not have permissions or mentions a public key, you might need to setup a [SSH key with Github](#ssh-key-in-github-account).
