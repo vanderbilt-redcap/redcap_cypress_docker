@@ -141,13 +141,7 @@ Having your own fork enables you to issue pull requests to vanderbilt-redcap/red
 
 ## Additional Information
 
-### Rebuild Docker Containers
-
-If changes are made to the Docker images, you will need to rebuild your containers before spooling them up.
-
-```
-docker compose build
-```
+For more information about the innerworkings, see the [REDCap Cypress Test Suite Docs](https://github.com/vanderbilt-redcap/redcap_cypress/blob/master/README.md)
 
 ### Issues and Resolutions:
 

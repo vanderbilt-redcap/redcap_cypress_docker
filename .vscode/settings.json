@@ -1,6 +1,9 @@
 {
     "git.repositoryScanMaxDepth": 2, // Allow detection of double nested redcap_rsvc dir
     "search.useIgnoreFiles": false, // Allow Ctrl-P searching to find files withing redcap_rsvc (included in redcap_cypress/.gitignore)
+    "search.exclude": {
+        "redcap_cypress/cypress/fixtures": true,
+    },
     "cucumber.features": [       
         "redcap_cypress/redcap_rsvc/Feature Tests/**/*.feature", //These are the RSVC features
         "redcap_cypress/cypress/features/*.feature" //Standard feature folder

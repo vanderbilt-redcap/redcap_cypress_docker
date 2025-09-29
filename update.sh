@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # The following line is important to ensure this script stops if any repos have outstanding changes that would prevent a git pull.
 set -e
