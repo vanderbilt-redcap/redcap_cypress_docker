@@ -29,6 +29,12 @@ cd redcap_docker
 docker compose up -d
 cd ..
 
+saveCoveragePath=redcap_source/save-code-coverage.php
+if [ ! -e $saveCoveragePath ]; then
+    # PHP will crash if this file doesn't exist due to the auto_prepend_file INI directive
+    touch $saveCoveragePath
+fi
+
 htmlDirLineCount=`cat redcap_docker/docker-compose.yml | grep -v '#' | grep '../redcap_source' | wc -l`
 if [ $htmlDirLineCount = 0 ]; then
     # Reaching this point means the redcap_source dir is not being mounted in the container via the volumes section
