@@ -53,12 +53,12 @@ A developer needs the following software on their machine before installing this
 
 - Git (version control)
 
-  - [for Windows](https://gitforwindows.org/)
-  - for macOS options (choose one)
+  - [For Windows](https://gitforwindows.org/)
+  - For macOS options (choose one)
     - [Homebrew](https://brew.sh/): `brew install git`
     - [MacPorts](https://www.macports.org/): `sudo port install git`
     - [Xcode](https://developer.apple.com/xcode/) - shipped as a binary package
-  - [for Linux](https://git-scm.com/download/linux)
+  - [For Linux](https://git-scm.com/download/linux)
 
 - [Rancher Desktop](https://rancherdesktop.io/) - This is a drop-in replacement for [Docker Desktop](https://www.docker.com/products/docker-desktop/), which is still supported but not allowed at some organizations (like VUMC).
   - You may want to set Rancher to `Automatically start on login` and `Start in the background` under `Preferences -> Application -> Behavior`
