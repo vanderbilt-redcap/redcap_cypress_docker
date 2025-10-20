@@ -103,7 +103,7 @@ To test against a different version of REDCap, simply update the **REDCAP_VERSIO
 
 ### Start REDCap Test Environment:
 
-Run the following from the command line to start the test environment.  You will be prompted for REDCap Community site credentials in order to download REDCap the first time you run this and after certain updates.
+Run the following from a bash compatible command line to start the test environment.  Git Bash is supported on Windows, and standard terminals are supported on Mac & Linux.  You will be prompted for REDCap Community site credentials in order to download REDCap the first time you run this and after certain updates.
 
 ```
 ./run.sh
