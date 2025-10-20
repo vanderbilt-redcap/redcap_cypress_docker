@@ -117,14 +117,6 @@ The following should be run periodically to ensure your local environment includ
 ./update.sh
 ```
 
-### Deprecated Tutorial Videos
-
-The following videos have been deprecated since the steps have been modified & simplified significantly since they were created.  We keep them for reference:
-
-~~[Windows Tutorial Video](https://youtu.be/cQhp9Om8Cgk)~~
-
-~~[macOS Tutorial Video](https://youtu.be/AyR-YFNrlZI)~~
-
 ### Contribute to Feature Tests:
 
 1. Create your own fork of redcap_rsvc that is based upon https://github.com/vanderbilt-redcap/redcap_rsvc
