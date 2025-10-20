@@ -117,6 +117,12 @@ The following should be run periodically to ensure your local environment includ
 ./update.sh
 ```
 
+### Strategies For Developing & Debugging Features
+
+1. The single most useful tool is `Continue Last Run.feature`.  The REDCap database is normally cleared between feature runs.  However, executing this special feature file immediately runs whatever steps you place in it against the current state of the database.  Rather than repeatedly running any features files you're working on from the beginning, you should use this file to test a small number of steps at a time to greatly reduce iteration time and significantly speed up your workflow.
+
+1. Execution can be paused in the middle of a feature to check details or perform manual actions by adding the following step: `And I want to pause`.  To continue execution, press the play button in the Cypress UI.
+
 ### Contribute to Feature Tests:
 
 1. Create your own fork of redcap_rsvc that is based upon https://github.com/vanderbilt-redcap/redcap_rsvc
