@@ -111,11 +111,11 @@ Run the following from a bash compatible command line to start the test environm
 
 ### Update The REDCap Test Environment:
 
-The following should be run periodically to ensure your local environment includes the latest changes.
+You should perform the following steps periodically to ensure your local environment includes the latest changes:
 
-```
-./update.sh
-```
+1. Close cypress (if it's open)
+2. Run `./update.sh`
+3. Run `./run.sh` to open cypress again
 
 ### Strategies For Developing & Debugging Features
 
