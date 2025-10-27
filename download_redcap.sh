@@ -134,7 +134,10 @@ else
     # Perform the curl request with username and password
     curl -o ${zip_file} --data username=$username --data-urlencode password=$password --data version=$redcap_version --data install=1 -X POST ${url}
 
-    if [ $? -eq 0 ]; then
-        attempt_unzip_redcap "${zip_file}"
+    if [ $? -ne 0 ]; then
+        echo REDCap download failed.  Please try again.
+        exit 1
     fi
+
+    attempt_unzip_redcap "${zip_file}"
 fi

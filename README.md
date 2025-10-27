@@ -53,12 +53,12 @@ A developer needs the following software on their machine before installing this
 
 - Git (version control)
 
-  - [for Windows](https://gitforwindows.org/)
-  - for macOS options (choose one)
+  - [For Windows](https://gitforwindows.org/)
+  - For macOS options (choose one)
     - [Homebrew](https://brew.sh/): `brew install git`
     - [MacPorts](https://www.macports.org/): `sudo port install git`
     - [Xcode](https://developer.apple.com/xcode/) - shipped as a binary package
-  - [for Linux](https://git-scm.com/download/linux)
+  - [For Linux](https://git-scm.com/download/linux)
 
 - [Rancher Desktop](https://rancherdesktop.io/) - This is a drop-in replacement for [Docker Desktop](https://www.docker.com/products/docker-desktop/), which is still supported but not allowed at some organizations (like VUMC).
   - You may want to set Rancher to `Automatically start on login` and `Start in the background` under `Preferences -> Application -> Behavior`
@@ -103,7 +103,7 @@ To test against a different version of REDCap, simply update the **REDCAP_VERSIO
 
 ### Start REDCap Test Environment:
 
-Run the following from the command line to start the test environment.  You will be prompted for REDCap Community site credentials in order to download REDCap the first time you run this and after certain updates.
+Run the following from a bash compatible command line to start the test environment.  Git Bash is supported on Windows, and standard terminals are supported on Mac & Linux.  You will be prompted for REDCap Community site credentials in order to download REDCap the first time you run this and after certain updates.
 
 ```
 ./run.sh
@@ -111,19 +111,17 @@ Run the following from the command line to start the test environment.  You will
 
 ### Update The REDCap Test Environment:
 
-The following should be run periodically to ensure your local environment includes the latest changes.
+You should perform the following steps periodically to ensure your local environment includes the latest changes:
 
-```
-./update.sh
-```
+1. Close cypress (if it's open)
+2. Run `./update.sh`
+3. Run `./run.sh` to open cypress again
 
-### Deprecated Tutorial Videos
+### Strategies For Developing & Debugging Features
 
-The following videos have been deprecated since the steps have been modified & simplified significantly since they were created.  We keep them for reference:
+1. The single most useful tool is `Continue Last Run.feature`.  The REDCap database is normally cleared between feature runs.  However, executing this special feature file immediately runs whatever steps you place in it against the current state of the database.  Rather than repeatedly running any features files you're working on from the beginning, you should use this file to test a small number of steps at a time to greatly reduce iteration time and significantly speed up your workflow.
 
-~~[Windows Tutorial Video](https://youtu.be/cQhp9Om8Cgk)~~
-
-~~[macOS Tutorial Video](https://youtu.be/AyR-YFNrlZI)~~
+1. Execution can be paused in the middle of a feature to check details or perform manual actions by adding the following step: `And I want to pause`.  To continue execution, press the play button in the Cypress UI.
 
 ### Contribute to Feature Tests:
 
