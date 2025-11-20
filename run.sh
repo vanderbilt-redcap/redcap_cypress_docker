@@ -35,7 +35,7 @@ if [ ! -e $saveCoveragePath ]; then
     touch $saveCoveragePath
 fi
 
-htmlDirLineCount=`cat redcap_docker/docker-compose.yml | grep -v '#' | grep '../redcap_source' | wc -l`
+htmlDirLineCount=`cat redcap_docker/docker-compose.yml | grep 'redcap_source/:/var/www/html' | awk '{$1=$1;print}' | grep -v '^#' | wc -l`
 if [ $htmlDirLineCount = 0 ]; then
     # Reaching this point means the redcap_source dir is not being mounted in the container via the volumes section
     # of docker-compose.yml, and should be copied into the container instead.
