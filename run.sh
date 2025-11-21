@@ -53,7 +53,7 @@ if [ $htmlDirLineCount = 0 ]; then
         echo Copying new REDCap version directories into the docker container...
         
         # This command copies the current redcap_v* dir and ever other file under redcap_source except other redcap_v* dirs.
-        ls -1| grep -v redcap_v | cat - <(echo redcap_v$redcapVersion) | xargs -I {} docker cp "{}" redcap_docker-app-1:/var/www/html
+        ls -1| grep -v redcap_v | cat - <(echo redcap_v$redcapVersion) | grep -v external_modules | xargs -I {} docker cp "{}" redcap_docker-app-1:/var/www/html
 
         # We used to use chown here, but that broke when we switched to a different docker base image.
         # Changing the permissions to 777 should work regardless of any future base image changes
