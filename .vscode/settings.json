@@ -1,15 +1,15 @@
 {
-    "git.repositoryScanMaxDepth": 2, // Allow detection of double nested redcap_rsvc dir
-    "search.useIgnoreFiles": false, // Allow Ctrl-P searching to find files withing redcap_rsvc (included in redcap_cypress/.gitignore)
-    "search.exclude": {
-        "redcap_cypress/cypress/fixtures": true,
-    },
-    "cucumber.features": [       
-        "redcap_cypress/redcap_rsvc/Feature Tests/**/*.feature", //These are the RSVC features
-        "redcap_cypress/cypress/features/*.feature" //Standard feature folder
-    ],
-    "cucumber.glue": [
-        "redcap_cypress/node_modules/rctf/step_definitions/*.js", //This is where the step definitions are
-        "redcap_cypress/node_modules/rctf/step_definitions/support/*.js", // This picks up the parameter types - VERY important
-    ],
+  "git.repositoryScanMaxDepth": 2, // Allow detection of double nested redcap_rsvc dir
+  "search.useIgnoreFiles": false, // Allow Ctrl-P to find files within redcap_rsvc (included in redcap_cypress/.gitignore)
+  "search.exclude": {
+    "redcap_cypress/cypress/fixtures": true
+  },
+  "cucumber.features": [
+    "redcap_cypress/redcap_rsvc/Feature Tests/**/*.feature", // RSVC features
+    "redcap_cypress/cypress/features/*.feature"              // Standard feature folder
+  ],
+  "cucumber.glue": [
+    "redcap_cypress/node_modules/rctf/step_definitions/*.js",           // RCTF step definitions
+    "redcap_cypress/node_modules/rctf/step_definitions/support/*.js"    // Parameter types (VERY important)
+  ]
 }
