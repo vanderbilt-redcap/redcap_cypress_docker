@@ -84,5 +84,14 @@
     "body": [
         "Given I login to REDCap with the user \"Test_User1\""
     ]
+  },
+  "10": {
+    "prefix": "Look for a table with specific values",
+    "scope": "cucumber",
+    "body": [
+        "Then I should see a table header and rows containing the following values in a table:",
+        "  | Column One Header | Column Two Header |",
+        "  | value-one         | value-two         |"
+    ]
   }
 }
