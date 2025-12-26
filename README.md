@@ -33,16 +33,6 @@ For each REDCap release, RSVC reviews system changes and determines which featur
 
 # Overview
 
-- [Software Prerequisites](#software-prerequisites)
-- [Create SSH Key](#ssh-key-in-github-account)
-- [Developer Toolkit Installation Instructions](#developer-toolkit-installation-instructions)
-- [Changing REDCap Versions](#changing-redcap-versions)
-- [Start REDCap Test Environment](#start-redcap-test-environment)
-- [Configure & Start Cypress](#configure--start-cypress)
-- [Contribute to Feature Tests](#contribute-to-feature-tests)
-- [Update Repositories](#update-repositories)
-- [Rebuild Docker Containers](#rebuild-docker-containers)
-
 ![Developer Toolkit](developer-toolkit.png)
 
 ### Software Prerequisites:
