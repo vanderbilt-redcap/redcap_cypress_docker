@@ -85,11 +85,12 @@ Specifically, you will need to
 
 ### Changing REDCap Versions
 
-To test against a different version of REDCap, simply update the **REDCAP_VERSION** variable in the **config.yml** file in the **/redcap_cypress/.circleci/** folder to your target REDCap version.
-
-  ```
-  REDCAP_VERSION: "15.5.7"
-  ```
+The main branch of this repo will point to the latest tested REDCap version by default.  The followings step can be used to modify this project to run against any older REDCap version:
+1. Determine which [redcap_cypress branch](https://github.com/vanderbilt-redcap/redcap_cypress/branches/all?query=v) is closest to the REDCap version you'd like to test
+1. Navigate to the `redcap_cypress` directory and run `git checkout v#.#.#` to checkout that branch
+1. If a branch does not exist for the exact REDCap version you'd like to test, you can modify this project to run on that version by editing the **redcap_cypress/.circleci/config.yml** file and updating the **REDCAP_VERSION** variable to your desired REDCap version.  Yes, the **REDCAP_VERSION** in this file is also used for local runs (for now).
+1. If you have cypress open, close it.
+1. Run `./run.sh`
 
 ### Start REDCap Test Environment:
 
