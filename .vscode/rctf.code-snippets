@@ -93,5 +93,12 @@
         "  | Column One Header | Column Two Header |",
         "  | value-one         | value-two         |"
     ]
+  },
+  "11": {
+    "prefix": "Wait for background processes (crons) to finish",
+    "scope": "cucumber",
+    "body": [
+        "Then I wait for background processes to finish",
+    ]
   }
 }
