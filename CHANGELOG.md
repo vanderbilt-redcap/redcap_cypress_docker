@@ -1,6 +1,14 @@
 # Changelog
 
-Notable changes to all related/child projects are centralized in this file so that we have a single source of truth for all changes affecting any part of the REDCap cypress testing ecosystem.  Please open a github issue or PR if you notice any other changes that you believe should be added here.
+Notable changes to all related/child projects are centralized in this file as a single source of truth for updates affecting any part of the **REDCap Cypress Testing Ecosystem**, ensuring consistency across repositories.
+
+The **REDCap Cypress Testing Ecosystem** includes the following [vanderbilt-redcap](https://github.com/vanderbilt-redcap) repositories:
+
+- **Developer Toolkit**: [`redcap_cypress_docker`](https://github.com/vanderbilt-redcap/redcap_rsvc) – Dockerized REDCap test environment for writing REDCap Cypress Gherkin feature tests.
+- **RCTF Step Definition Library**: [`rctf`](https://github.com/vanderbilt-redcap/rctf) - Shared step definitions and helper commands that power REDCap Cypress Test Suite.
+- **Test Suite Template**: [`redcap_cypress`](https://github.com/vanderbilt-redcap/redcap_rsvc) – Base template for building a REDCap Cypress test suite.
+
+Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new/choose) or [submit a PR](https://github.com/vanderbilt-redcap/redcap_cypress_docker/compare) if you notice changes that should be added.
 
 ## 16.0.4 - 2025-12-18
 
