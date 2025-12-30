@@ -57,7 +57,7 @@ if [ $htmlDirLineCount = 0 ]; then
 
         # We used to use chown here, but that broke when we switched to a different docker base image.
         # Changing the permissions to 777 should work regardless of any future base image changes
-        docker exec redcap_docker-app-1 chmod 777 temp edocs
+        docker exec redcap_docker-app-1 chmod -R 777 temp edocs
     fi
     
     cd ..
