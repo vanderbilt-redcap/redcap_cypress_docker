@@ -113,9 +113,10 @@ Run the following from a bash compatible command line to start the test environm
 
 You should perform the following steps periodically to ensure your local environment includes the latest changes:
 
+1. Read the portion of [the changelog](CHANGELOG.md) for all REDCap versions since the one you last tested using cypress.  This is important to stay informed and consider breaking changes that may be required when you choose to update to the latest version. 
 1. Close cypress (if it's open)
-2. Run `./update.sh`
-3. Run `./run.sh` to open cypress again
+1. Run `./update.sh`
+1. Run `./run.sh` to open cypress again
 
 ### Strategies For Developing & Debugging Features
 
