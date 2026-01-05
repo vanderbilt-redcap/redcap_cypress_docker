@@ -16,7 +16,7 @@ if [ ! -d "redcap_cypress" ]; then
     cd ..
 fi
 
-redcapVersion=`cat redcap_cypress/.circleci/config.yml |grep 'REDCAP_VERSION:'|cut -d'"' -f 2`
+redcapVersion=`cat redcap_cypress/cypress.env.json.example|grep redcap_version|cut -d'"' -f 4`
 if [ ! -d "redcap_source/redcap_v$redcapVersion" ]; then
     echo "The version of REDCap used for testing has changed.  The new version must be downloaded."
     ./download_redcap.sh $redcapVersion
@@ -52,12 +52,12 @@ if [ $htmlDirLineCount = 0 ]; then
         # This could be an initial run or a newly added redcap version.
         echo Copying new REDCap version directories into the docker container...
         
-        # This command copies the current redcap_v* dir and ever other file under redcap_source except other redcap_v* dirs.
+        # This command copies the current redcap_v* dir and every other file under redcap_source except other redcap_v* dirs.
         ls -1| grep -v redcap_v | cat - <(echo redcap_v$redcapVersion) | grep -v external_modules | xargs -I {} docker cp "{}" redcap_docker-app-1:/var/www/html
 
         # We used to use chown here, but that broke when we switched to a different docker base image.
         # Changing the permissions to 777 should work regardless of any future base image changes
-        docker exec redcap_docker-app-1 chmod 777 temp edocs
+        docker exec redcap_docker-app-1 chmod -R 777 temp edocs
     fi
     
     cd ..
