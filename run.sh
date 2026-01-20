@@ -17,7 +17,17 @@ if [ ! -d "redcap_cypress" ]; then
 fi
 
 redcapVersion=`cat redcap_cypress/cypress.env.json.example|grep redcap_version|cut -d'"' -f 4`
-if [ ! -d "redcap_source/redcap_v$redcapVersion" ]; then
+redcapSourcePath="redcap_source/redcap_v$redcapVersion"
+if [ $redcapVersion == '99.99.99' ]; then
+    if [ ! -d $redcapSourcePath ]; then
+        git clone git@github.com:vanderbilt-redcap/redcap.git --depth=1 $redcapSourcePath
+    else
+        echo Pulling the latest REDCap changes from GitHub...
+        cd $redcapSourcePath
+        git pull
+        cd ../../
+    fi
+elif [ ! -d $redcapSourcePath ]; then
     echo "The version of REDCap used for testing has changed.  The new version must be downloaded."
     ./download_redcap.sh $redcapVersion
 fi
