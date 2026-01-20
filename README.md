@@ -81,8 +81,10 @@ Specifically, you will need to
 1. Navigate to the directory where you want this project to live (e.g. your home directory).  If you don't have experience navigating between different directories in a terminal, ask the AI of your choice to teach you. 
 1. Run the following command to download a copy of this project to the current directory in your terminal:
     - `git clone git@github.com:vanderbilt-redcap/redcap_cypress_docker.git`
+    - If you see a failure message that says you do not have permissions or mentions a public key, you likely need to setup an [SSH Key in GitHub Account](#ssh-key-in-github-account).
 1. Start the test environment by running the the following command:
     - `./run.sh`
+    - If you see an error message about Docker not running or an "error during connect", you will need to start your chosen docker app (likely Rancher or Docker Desktop).  If it is started already, you may need to restart it and/or your computer.
 1. You will be prompted for your username and password to the REDCap Community website in order to download REDCap the first time you set up your test environment and after certain updates.
 1. The Cypress window should open after a few minutes, allowing you to select & run any RSVC feature test.  Cypress will open much faster on subsequent runs.
 
@@ -127,9 +129,3 @@ Having your own fork enables you to issue pull requests to vanderbilt-redcap/red
 ## Additional Information
 
 For more information about the innerworkings, see the [REDCap Cypress Test Suite Docs](https://github.com/vanderbilt-redcap/redcap_cypress/blob/master/README.md)
-
-### Issues and Resolutions:
-
-[^1]: Git Clone Fail: If the message says you do not have permissions or mentions a public key, you might need to setup a [SSH key with Github](#ssh-key-in-github-account).
-[^2]: Shell Script not Running: If you are on Windows and you see no outputs, you will need to run in a Bash shell. Because you have Git, you might have Git Bash installed. At the top of your VS Code terminal, on the right, Click on the down-arrow next to the plus sign and select Git Bash.
-[^3]: Docker Running: If you see an error message about Docker not running or an "error during connect", you will need to start Docker Desktop. On Windows, you can search for Docker Desktop in the Start Menu. On macOS, you can find it in your Applications folder. On Linux, you can start the Docker service with `sudo systemctl start docker`. If you get a message of "no configuration file provided: not found", you might not be in the redcap_docker directory.
