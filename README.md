@@ -77,30 +77,22 @@ Specifically, you will need to
 
 ### Developer Toolkit Installation Instructions:
 
-1. **Clone this repository to your machine.** [^1]
+1. Open a bash compatible command prompt.  On Windows, `Git Bash` is supported.  On Mac, the built-in `Terminal` app is supported.
+1. Navigate to the directory where you want this project to live (e.g. your home directory).  If you don't have experience navigating between different directories in a terminal, ask the AI of your choice to teach you. 
+1. Run the following command to download a copy of this project to the current directory in your terminal:
+    - `git clone git@github.com:vanderbilt-redcap/redcap_cypress_docker.git`
+1. Start the test environment by running the the following command:
+    - `./run.sh`
+1. You will be prompted for your username and password to the REDCap Community website in order to download REDCap the first time you set up your test environment and after certain updates.
+1. The Cypress window should open after a few minutes, allowing you to select & run any RSVC feature test.  Cypress will open much faster on subsequent runs.
 
-   ```
-   git clone git@github.com:vanderbilt-redcap/redcap_cypress_docker.git
-   ```
+### Strategies For Developing & Debugging Features
 
-### Changing REDCap Versions
+1. The single most useful tool is `Continue Last Run.feature`.  The REDCap database is normally cleared between feature runs.  However, executing this special feature file immediately runs whatever steps you place in it against the current state of the database.  Rather than repeatedly running any features files you're working on from the beginning, you should use this file to test a small number of steps at a time to greatly reduce iteration time and significantly speed up your workflow.
 
-The main branch of this repo will point to the latest tested REDCap version by default.  The followings step can be used to modify this project to run against any older REDCap version:
-1. Determine which [redcap_cypress branch](https://github.com/vanderbilt-redcap/redcap_cypress/branches/all?query=v) is closest to the REDCap version you'd like to test
-1. Navigate to the `redcap_cypress` directory and run `git checkout v#.#.#` to checkout that branch
-1. If a branch does not exist for the exact REDCap version you'd like to test, you can modify this project to run on that version by editing the **redcap_cypress/cypress.env.json.example** file and updating the **redcap_version** variable to your desired REDCap version.  This variable is copied from **cypress.env.json.example** into **cypress.env.json** every time `./run.sh` is called so that the expected version of REDCap is used after `./update.sh`, `git pull`, `git checkout`, etc.
-1. If you have cypress open, close it.
-1. Run `./run.sh`
+1. Execution can be paused in the middle of a feature to check details or perform manual actions by adding the following step: `And I want to pause`.  To continue execution, press the play button in the Cypress UI.
 
-### Start REDCap Test Environment:
-
-Run the following from a bash compatible command line to start the test environment.  Git Bash is supported on Windows, and standard terminals are supported on Mac & Linux.  You will be prompted for REDCap Community site credentials in order to download REDCap the first time you run this and after certain updates.
-
-```
-./run.sh
-```
-
-### Update The REDCap Test Environment:
+### Updating The Test Environment:
 
 You should perform the following steps periodically to ensure your local environment includes the latest changes:
 
@@ -109,11 +101,14 @@ You should perform the following steps periodically to ensure your local environ
 1. Run `./update.sh`
 1. Run `./run.sh` to open cypress again
 
-### Strategies For Developing & Debugging Features
+### Changing REDCap Versions
 
-1. The single most useful tool is `Continue Last Run.feature`.  The REDCap database is normally cleared between feature runs.  However, executing this special feature file immediately runs whatever steps you place in it against the current state of the database.  Rather than repeatedly running any features files you're working on from the beginning, you should use this file to test a small number of steps at a time to greatly reduce iteration time and significantly speed up your workflow.
-
-1. Execution can be paused in the middle of a feature to check details or perform manual actions by adding the following step: `And I want to pause`.  To continue execution, press the play button in the Cypress UI.
+The main branch of this repo will point to the latest tested REDCap version by default.  If you would like to run the test environment for an older REDCap version, perform the followings step:
+1. Determine which [redcap_cypress branch](https://github.com/vanderbilt-redcap/redcap_cypress/branches/all?query=v) is closest to the REDCap version you'd like to test
+1. Navigate to the `redcap_cypress` directory and run `git checkout v#.#.#` to checkout that branch
+1. If a branch does not exist for the exact REDCap version you'd like to test, you can modify this project to run on that version by editing the **redcap_cypress/cypress.env.json.example** file and updating the **redcap_version** variable to your desired REDCap version.  This variable is copied from **cypress.env.json.example** into **cypress.env.json** every time `./run.sh` is called so that the expected version of REDCap is used after `./update.sh`, `git pull`, `git checkout`, etc.
+1. If you have cypress open, close it.
+1. Run `./run.sh`
 
 ### Contribute to Feature Tests:
 
