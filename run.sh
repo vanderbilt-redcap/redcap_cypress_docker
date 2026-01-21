@@ -16,10 +16,19 @@ if [ ! -d "redcap_cypress" ]; then
     cd ..
 fi
 
-redcapVersion=`cat redcap_cypress/cypress.env.json.example|grep redcap_version|cut -d'"' -f 4`
+rootBranch=`git branch --show-current`
+if [[ $rootBranch == 'dev' ]]; then
+    redcapVersion=99.99.99
+else
+    redcapVersion=`cat redcap_cypress/cypress.env.json.example|grep redcap_version|cut -d'"' -f 4`
+fi 
+
 redcapSourcePath="redcap_source/redcap_v$redcapVersion"
-if [ $redcapVersion == '99.99.99' ]; then
+if [[ $rootBranch == 'dev' ]]; then
     if [ ! -d $redcapSourcePath ]; then
+        echo
+        echo Cloning the REDCap source repo.  If this fails with a permissions error, you will need to email redcap@vumc.org
+        echo including your username and requesting read-only access to https://github.com/vanderbilt-redcap/redcap
         git clone git@github.com:vanderbilt-redcap/redcap.git --depth=1 $redcapSourcePath
     else
         echo Pulling the latest REDCap changes from GitHub...
