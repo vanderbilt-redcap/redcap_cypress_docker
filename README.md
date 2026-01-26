@@ -105,7 +105,7 @@ You should perform the following steps periodically to ensure your local environ
 
 ### Changing REDCap Versions
 
-The main branch of this repo will point to the latest tested REDCap version by default.  If you would like to run the test environment for an older REDCap version, perform the followings step:
+The main branch of this repo will point to the latest tested REDCap release by default.  If instead you would like to test REDCap changes that have not yet made it into a release, checkout the `dev` branch for `redcap_cypress_docker`.  If you would like to test an older REDCap version, perform the followings step:
 1. Determine which [redcap_cypress branch](https://github.com/vanderbilt-redcap/redcap_cypress/branches/all?query=v) is closest to the REDCap version you'd like to test
 1. Navigate to the `redcap_cypress` directory and run `git checkout v#.#.#` to checkout that branch
 1. If a branch does not exist for the exact REDCap version you'd like to test, you can modify this project to run on that version by editing the **redcap_cypress/cypress.env.json.example** file and updating the **redcap_version** variable to your desired REDCap version.  This variable is copied from **cypress.env.json.example** into **cypress.env.json** every time `./run.sh` is called so that the expected version of REDCap is used after `./update.sh`, `git pull`, `git checkout`, etc.
