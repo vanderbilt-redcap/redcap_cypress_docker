@@ -16,15 +16,15 @@ if [ ! -d "redcap_cypress" ]; then
     cd ..
 fi
 
-rootBranch=`git branch --show-current`
-if [[ $rootBranch == 'dev' ]]; then
+cypressBranch=`git -C redcap_cypress branch --show-current`
+if [[ $cypressBranch == 'dev' ]]; then
     redcapVersion=99.99.99
 else
     redcapVersion=`cat redcap_cypress/cypress.env.json.example|grep redcap_version|cut -d'"' -f 4`
 fi 
 
 redcapSourcePath="redcap_source/redcap_v$redcapVersion"
-if [[ $rootBranch == 'dev' ]]; then
+if [[ $cypressBranch == 'dev' ]]; then
     if [ ! -d $redcapSourcePath ]; then
         echo
         echo Cloning the REDCap source repo.  If this fails with a permissions error, you will need to email redcap@vumc.org
@@ -64,7 +64,7 @@ if [ $htmlDirLineCount = 0 ]; then
 
     cd redcap_source
 
-    if docker exec redcap_docker-app-1 test -d redcap_v$redcapVersion; then
+    if [[ $cypressBranch != 'dev' ]] && docker exec redcap_docker-app-1 test -d redcap_v$redcapVersion; then
         # No need to copy if the current redcap version is already there
         echo
     else
