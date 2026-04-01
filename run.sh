@@ -30,9 +30,13 @@ if [[ $cypressBranch == 'dev' ]]; then
         echo Cloning the REDCap source repo.  If this fails with a permissions error, you will need to email redcap@vumc.org.
         echo Include your GitHub username and request read-only access to https://github.com/vanderbilt-redcap/redcap
         git clone git@github.com:vanderbilt-redcap/redcap.git --depth=1 $redcapSourcePath
-        # Move the .git dir elsewhere so that the 'docker cp' command is faster
-        mv $redcapSourcePath/.git $redcapSourcePath.git
     else
+        if [ ! -d $redcapSourcePath.git ]; then
+            # Move the .git dir elsewhere so that the 'docker cp' command is faster
+            # This is called here rather than after clone to cover both new and existing checkouts
+            mv $redcapSourcePath/.git $redcapSourcePath.git
+        fi
+
         echo Pulling the latest REDCap changes from GitHub...
         cd $redcapSourcePath
         git --git-dir=../../$redcapSourcePath.git pull
