@@ -106,7 +106,13 @@ You should perform the following steps periodically to ensure your local environ
 ### Changing REDCap Versions
 
 The `master` branch of `redcap_cypress` will be checked out by default.  This will use the latest REDCap release version that has been tested.  If you would like to test a different REDCap version, perform the following steps:
-1. Determine which [redcap_cypress branch](https://github.com/vanderbilt-redcap/redcap_cypress/branches/all?query=v) is closest to the REDCap version you'd like to test.  If you have github access to REDCap's source code you may also test REDCap changes that have not yet made it into a release yet using the `dev` branch.
+1. Determine which [redcap_cypress branch](https://github.com/vanderbilt-redcap/redcap_cypress/branches/all?query=v) is closest to the REDCap version you'd like to test.
+    - If you have github access to REDCap's source code you may also test REDCap changes that have not yet made it into a release yet using the `dev` branch.
+    - While using the `dev` branch, you may also user your own modified version of REDCap's source code using the following command at any time (including while Cypress is running):
+        - ```
+          ./copy-redcap-source-to-container.sh path/to/redcap_v#.#.#
+          ```
+        - Keep in mind that this command must be run every time you change a REDCap source file.  It is possible to avoid this by uncommenting the `redcap_source` volume in `docker-compose.yml`, but that is not recommended as it will come with a significant performance hit (especially on Windows).
 1. Navigate to the `redcap_cypress` directory and run `git checkout <your-desired-branch>` to checkout that branch
 1. If a branch does not exist for the exact REDCap version you'd like to test, you can modify this project to run on that version by editing the **redcap_cypress/cypress.env.json.example** file and updating the **redcap_version** variable to your desired REDCap version.  This variable is copied from **cypress.env.json.example** into **cypress.env.json** every time `./run.sh` is called so that the expected version of REDCap is used after `./update.sh`, `git pull`, `git checkout`, etc.
 1. If you have cypress open, close it.
