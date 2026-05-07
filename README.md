@@ -132,6 +132,14 @@ git remote add origin <your_fork_url_here>
 
 Having your own fork enables you to issue pull requests to vanderbilt-redcap/redcap_rsvc after you complete a feature.
 
+### Writing Tests For External Modules
+
+Any External Modules you wish to test should be placed in `redcap_source/modules`.  Any `.feature` files places inside an `automated-tests` directory in the root of each module will automatically become available in Cypress.  The following special behaviors will occur when they run:
+- The relevant module (and only that module) will be automatically enabled when the test starts.
+- File paths used in test steps will be considered relative to the `.feature` file that is being run.
+
+A working example test can be found in the [Module Development Examples module](https://github.com/vanderbilt-redcap/external-module-framework-docs/tree/main/example_modules/module-development-examples_v1.0/automated-tests/file-settings.feature).
+
 ## Additional Information
 
 For more information about the innerworkings, see the [REDCap Cypress Test Suite Docs](https://github.com/vanderbilt-redcap/redcap_cypress/blob/master/README.md)
