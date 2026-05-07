@@ -10,7 +10,8 @@ The **REDCap Cypress Testing Ecosystem** includes the following [vanderbilt-redc
 
 Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new/choose) or [submit a PR](https://github.com/vanderbilt-redcap/redcap_cypress_docker/compare) if you notice changes that should be added.
 
-## Upcoming LTS
+## Soon to be released
+- Tests (.feature files) within External Module directories now automatically enable that module when the test starts.
 - Removed the following steps that broke on REDCap updates in favor of more generic steps like those after the 'Pending Requests' line in B.6.4.1200.
     - I should see the "a" request created for the project named "b" within the "c" table
     - I click on the "a" icon for the "b" request created for the project named "c" within the "d" table
