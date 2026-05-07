@@ -118,7 +118,7 @@ The `master` branch of `redcap_cypress` will be checked out by default.  This wi
 1. If you have cypress open, close it.
 1. Run `./run.sh`
 
-### Contribute to Feature Tests:
+### Contributing To Feature Tests:
 
 1. Create your own fork of redcap_rsvc that is based upon https://github.com/vanderbilt-redcap/redcap_rsvc
 
