@@ -12,9 +12,6 @@ Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress
 
 ## Soon to be released
 - Writing Cypress tests within External Modules is now officially supported.  See [README.md](README.md#writing-tests-for-external-modules) for details.
-- Removed the following steps that broke on REDCap updates in favor of more generic steps like those after the 'Pending Requests' line in B.6.4.1200.
-    - I should see the "a" request created for the project named "b" within the "c" table
-    - I click on the "a" icon for the "b" request created for the project named "c" within the "d" table
 
 ## 16.0.11 - 2026-02-26
 
