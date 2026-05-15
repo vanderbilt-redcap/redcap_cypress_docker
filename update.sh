@@ -73,6 +73,10 @@ if [ $commitsBehindMain != 0 ]; then
     echo Please either checkout the main branch for redcap_docker, or merge it into your working branch.
     exit
 fi
+# Detect ARM architectures to alter default platorm for redcap_docker build
+if [[ "$(uname -m)" =~ ^(arm64|ARM64|aarch64)$ ]]; then
+    export PLATFORM=linux/arm64
+fi
 docker compose --profile external-storage --profile sftp down # This ensures a running container is restarted, which can fix various docker issues.
 docker compose up -d --build --remove-orphans # This ensures the container is rebuilt to include any Dockerfile changes, other updates, or fix various issues.
 
