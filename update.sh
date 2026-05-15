@@ -53,7 +53,7 @@ git fetch https://github.com/vanderbilt-redcap/redcap_cypress master
 commitsBehindMaster=`git log --oneline ..FETCH_HEAD | wc -l`
 if [ $commitsBehindMaster != 0 ]; then
     echo
-    echo Please either checkout master for stable changes or the latest v#.#.# branch for dev changes.
+    echo To use this update script, please either checkout the master branch of redcap_cypress, or merge the latest changes from master into your current branch.
     exit
 fi
 
