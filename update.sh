@@ -58,7 +58,7 @@ if [ $commitsBehindMaster != 0 ]; then
 fi
 
 # Adam Lewis had an instance where cypress started throwing confusing errors on every feature which was resolved by the following steps:
-rm node_modules -r
+[ -f "node_modules" ] && rm node_modules -r
 npm cache clean --force
 npm install --no-fund --no-audit
 cd ..
