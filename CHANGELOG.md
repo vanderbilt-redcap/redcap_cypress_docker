@@ -18,6 +18,7 @@ Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress
 - Removed the following steps that broke on REDCap updates in favor of more generic steps like those after the 'Pending Requests' line in [B.6.4.1200.](https://github.com/vanderbilt-redcap/redcap_rsvc/blob/staging/Feature%20Tests/B/Project%20Setup_4/B.6.4.1200.%20-%20Delete%20Project.feature)
     - `I should see the "a" request created for the project named "b" within the "c" table`
     - `I click on the "a" icon for the "b" request created for the project named "c" within the "d" table`
+- Removed brittle steps like `I select record ID "1" from arm name "Arm 1: Arm 1" on the Add / Edit record page` with more mature generic steps like `I select "Arm 2" on the dropdown field labeled "Arm 1"` and `I select "1" on the dropdown field labeled "select record"`.
 
 ## 16.0.11 - 2026-02-26
 
