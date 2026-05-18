@@ -51,9 +51,6 @@ fi
 awk '{ gsub(/"redcap_version": ".*",/, "\"redcap_version\": \"'$redcapVersion'\","); print }' redcap_cypress/cypress.env.json > awk-temp && mv awk-temp redcap_cypress/cypress.env.json
 
 cd redcap_docker
-if [[ "$(uname -m)" =~ ^(arm64|ARM64|aarch64)$ ]]; then
-    export PLATFORM=linux/arm64
-fi
 docker compose up -d
 cd ..
 
