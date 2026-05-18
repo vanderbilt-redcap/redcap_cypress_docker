@@ -9,6 +9,7 @@ getUpdateScriptInfo () {
 
 oldUpdateScriptInfo=`getUpdateScriptInfo`
 
+echo
 echo Updating redcap_cypress_docker...
 git pull
 git fetch https://github.com/vanderbilt-redcap/redcap_cypress_docker main
@@ -25,6 +26,7 @@ if [ "$oldUpdateScriptInfo" != "`getUpdateScriptInfo`" ]; then
     exit
 fi
 
+echo
 echo Updating redcap_rsvc...
 cd redcap_cypress/redcap_rsvc
 git fetch https://github.com/vanderbilt-redcap/redcap_rsvc staging
@@ -46,6 +48,7 @@ else
 fi
 cd ../..
 
+echo
 echo Updating redcap_cypress...
 cd redcap_cypress
 git pull
@@ -63,6 +66,7 @@ npm cache clean --force
 npm install --no-fund --no-audit
 cd ..
 
+echo
 echo Updating redcap_docker...
 cd redcap_docker
 git pull
