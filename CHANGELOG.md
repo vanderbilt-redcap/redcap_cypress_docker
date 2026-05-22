@@ -10,7 +10,8 @@ The **REDCap Cypress Testing Ecosystem** includes the following [vanderbilt-redc
 
 Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new/choose) or [submit a PR](https://github.com/vanderbilt-redcap/redcap_cypress_docker/compare) if you notice changes that should be added.
 
-## Soon to be released
+## 17.1.1 - 2026-05-22
+
 - Writing Cypress tests within External Modules is now officially supported.  See [README.md](README.md#writing-tests-for-external-modules) for details.
 - Removed the following steps that were brittle around page load timing
     - Removed steps like `I (should )see a dialog containing the following text: "a"` in favor of `I should see "a"`
