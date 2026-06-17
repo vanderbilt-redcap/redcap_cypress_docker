@@ -31,8 +31,8 @@ echo Updating redcap_rsvc...
 cd redcap_cypress/redcap_rsvc
 git fetch https://github.com/vanderbilt-redcap/redcap_rsvc staging
 rsvcBranchName=`git rev-parse --abbrev-ref HEAD`
-if [ "$rsvcBranchName" = "staging" ] || [ "$rsvcBranchName" = "main" ]; then
-    # Developers shouldn't be working directly these branches.
+if [ "$rsvcBranchName" = "staging" ]; then
+    # Developers shouldn't be working directly in this branch.
     # This may be an initial run before any development has started.
     # Regardless, just checkout the latest
     git -c advice.detachedHead=false checkout FETCH_HEAD > /dev/null
