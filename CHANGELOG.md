@@ -10,6 +10,16 @@ The **REDCap Cypress Testing Ecosystem** includes the following [vanderbilt-redc
 
 Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new/choose) or [submit a PR](https://github.com/vanderbilt-redcap/redcap_cypress_docker/compare) if you notice changes that should be added.
 
+## Upcoming
+
+- Steps include 'the input/textarea/password field' were simplified because extraneous language implied that the step was doing something it wasn't.  The behavior of each step did not change, but the following new language is required moving forward:
+    - In only the aforementioned steps, the string 'labeled' has replaced the following:
+        - labeled exactly
+        - for the field labeled
+        - for the Discrepant field labeled
+        - within the Record Locking Customization table for the Data Collection Instrument named
+    - In only the aforementioned steps, suffixes including 'on/in/within the dialog/tooltip/etc.' have been removed.
+
 ## 17.1.1 - 2026-05-22
 
 - Writing Cypress tests within External Modules is now officially supported.  See [README.md](README.md#writing-tests-for-external-modules) for details.
