@@ -10,7 +10,7 @@ The **REDCap Cypress Testing Ecosystem** includes the following [vanderbilt-redc
 
 Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new/choose) or [submit a PR](https://github.com/vanderbilt-redcap/redcap_cypress_docker/compare) if you notice changes that should be added.
 
-## Upcoming
+## 17.2.1 - 2026-07-03
 
 - Steps include 'the input/textarea/password field' were simplified because extraneous language implied that the step was doing something it wasn't.  The behavior of each step did not change, but the following new language is required moving forward:
     - In only the aforementioned steps, the string 'labeled' has replaced the following:
