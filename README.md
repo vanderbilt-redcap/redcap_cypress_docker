@@ -120,7 +120,7 @@ The `master` branch of `redcap_cypress` will be checked out by default.  This wi
 1. If you have cypress open, close it.
 1. Run `./run.sh`
 
-### Contributing To Feature Tests:
+### Contributing To RSVC Feature Tests:
 
 1. Create your own fork of redcap_rsvc that is based upon https://github.com/vanderbilt-redcap/redcap_rsvc
 
@@ -134,6 +134,8 @@ git remote add origin <your_fork_url_here>
 
 Having your own fork enables you to issue pull requests to vanderbilt-redcap/redcap_rsvc after you complete a feature.
 
+See the [Supported Step Syntax](#supported-step-syntax) section below to learn about all the various steps you can use within your feature tests.
+
 ### Writing Tests For External Modules
 
 Any External Modules you wish to test should be placed in `redcap_source/modules`.  Any `.feature` files places inside an `automated-tests` directory in the root of each module will automatically become available in Cypress.  The following special behaviors will occur when they run:
@@ -142,6 +144,41 @@ Any External Modules you wish to test should be placed in `redcap_source/modules
 - More coming soon!  We currently have bandwidth to actively support module authors in writing cypress tests.  As you notice issues or have ideas for additional features and/or how to make module testing easier, please reach out by [creating an issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new).
 
 A working example test can be found in the [Module Development Examples module](https://github.com/vanderbilt-redcap/external-module-framework-docs/tree/main/example_modules/module-development-examples_v1.0/automated-tests/file-settings.feature).
+
+See the [Supported Step Syntax](#supported-step-syntax) section below to learn about all the various steps you can use within your feature tests.
+
+### Supported Step Syntax
+
+When trying to determine what step syntax is supported for a given action you'd like to take, step one should generally be to reference the following list of the most commonly used step definitions.  Nine out of ten times the action you want to perform will be supported by one of the following:
+
+- `I login to REDCap with the user "Some_User_Name"`
+  - By default, the following usernames are configured: `Test_Admin` and `Test_User1` through `Test_User4`
+  - If you'd like to log in manually, the default password is `Testing123` for all of them.
+- `I create a new project named "Test Project" by clicking on "New Project" in the menu bar, selecting "Practice / Just for fun" from the dropdown, choosing file "Project_1.xml", and clicking the "Create Project" button`
+- `I (action) the (target) labeled "Some text near the target"`
+  - `action` can be `click on`, `should see`, `should NOT see`, `check`, or `uncheck`
+  - `target` can be `button`, `link`, `checkbox`, `icon`, or `radio`
+  - The suffix ` in the row labeled "Some text in that row"` can be added to only look within a particular table row.
+  - The suffix ` in the column labeled "Some text in that column" and the row labeled "Some text in that row"` can be added to only look within a certain table cell.
+- `I select "Some dropdown option" on the dropdown field labeled "Some text near the desired 'select' element"`
+- `I should see "Text expected anywhere on the page"`
+- `I should NOT see "Text that shouldn't exist anywhere on the page"`
+- `I enter "Some text" into the (target) labeled "Some text near the desired element"`
+  - `target` can be `input field` or `textarea`
+- `I should see a table header and rows containing the following values in a table:`
+  - See [usage examples in redcap_rsvc](https://github.com/search?type=code&q=repo%3Avanderbilt-redcap%2Fredcap_rsvc+path%3A%2F%5EFeature+Tests%5C%2F%2F+%22I%20should%20see%20a%20table%20header%20and%20rows%20containing%20the%20following%20values%20in%20a%20table:%22) for how to specify the desired headers & rows.
+- `I upload a "csv" format file located at "path/to/file.csv", by clicking the button near "Choose File" to browse for the file, and clicking the button labeled "Upload File" to upload the file`
+  - All the items in quotes can be modified to match the situation.
+- `I wait for X seconds`
+  - This step should be used sparingly as it unnecessarily slows down tests. It can generally be avoided by using an `I should see...` step to look for something specific on the page and allowing the test to continue immediately when it is found. There are occasionally exceptions where waiting is the only option current available.
+- `I logout`
+
+All supported step definitions and their many variations are documented in the [RCTF Documentation](https://vanderbilt-redcap.github.io/rctf/). Test writers also often find it helpful to search within the `Feature Tests` directory in `redcap_rsvc` for common steps using keywords related to what you would like to do.  For example, you can...
+- [Search for "click"](https://github.com/search?type=code&q=repo%3Avanderbilt-redcap%2Fredcap_rsvc+path%3A%2F%5EFeature+Tests%5C%2F%2F+%22click%22) to see steps for clicking various elements
+- [Search for "in the row"](https://github.com/search?type=code&q=repo%3Avanderbilt-redcap%2Fredcap_rsvc+path%3A%2F%5EFeature+Tests%5C%2F%2F+%22in+the+row%22) to see steps looking only within table rows
+- [Search for "table header and rows containing"](https://github.com/search?type=code&q=repo%3Avanderbilt-redcap%2Fredcap_rsvc+path%3A%2F%5EFeature+Tests%5C%2F%2F+%22table+header+and+rows+containing%22) to see steps looking for specific table content
+- [Search for "download"](https://github.com/search?type=code&q=repo%3Avanderbilt-redcap%2Fredcap_rsvc+path%3A%2F%5EFeature+Tests%5C%2F%2F+%22download%22) to see steps related to downloads
+- [Search for "User Rights"](https://github.com/search?type=code&q=repo%3Avanderbilt-redcap%2Fredcap_rsvc+path%3A%2F%5EFeature+Tests%5C%2F%2F+%22User+Rights%22) to see steps related to User Rights
 
 ## Additional Information
 
