@@ -173,12 +173,16 @@ When trying to determine what step syntax is supported for a given action you'd 
   - This step should be used sparingly as it unnecessarily slows down tests. It can generally be avoided by using an `I should see...` step to look for something specific on the page and allowing the test to continue immediately when it is found. There are occasionally exceptions where waiting is the only option current available.
 - `I logout`
 
-All supported step definitions and their many variations are documented in the [RCTF Documentation](https://vanderbilt-redcap.github.io/rctf/). Test writers also often find it helpful to search within the `Feature Tests` directory in `redcap_rsvc` for common steps using keywords related to what you would like to do.  For example, you can...
+All supported step definitions and their many variations can be found in the [RCTF Documentation](https://vanderbilt-redcap.github.io/rctf/). It includes a `Gherkin Step Builder` to help you generate syntactically valid steps for your feature tests.  Under the hood, all step definitions are defined in the [RCTF](https://github.com/vanderbilt-redcap/rctf) node library.
+
+Test writers also often find it helpful to search within the `Feature Tests` directory in `redcap_rsvc` for common steps using keywords related to what they would like to do.  For example, you can...
 - [Search for "click"](https://github.com/search?type=code&q=repo%3Avanderbilt-redcap%2Fredcap_rsvc+path%3A%2F%5EFeature+Tests%5C%2F%2F+%22click%22) to see steps for clicking various elements
 - [Search for "in the row"](https://github.com/search?type=code&q=repo%3Avanderbilt-redcap%2Fredcap_rsvc+path%3A%2F%5EFeature+Tests%5C%2F%2F+%22in+the+row%22) to see steps looking only within table rows
 - [Search for "table header and rows containing"](https://github.com/search?type=code&q=repo%3Avanderbilt-redcap%2Fredcap_rsvc+path%3A%2F%5EFeature+Tests%5C%2F%2F+%22table+header+and+rows+containing%22) to see steps looking for specific table content
 - [Search for "download"](https://github.com/search?type=code&q=repo%3Avanderbilt-redcap%2Fredcap_rsvc+path%3A%2F%5EFeature+Tests%5C%2F%2F+%22download%22) to see steps related to downloads
 - [Search for "User Rights"](https://github.com/search?type=code&q=repo%3Avanderbilt-redcap%2Fredcap_rsvc+path%3A%2F%5EFeature+Tests%5C%2F%2F+%22User+Rights%22) to see steps related to User Rights
+
+RSVC has created hundreds of automated feature tests that validate the functional requirements of REDCap. Reviewing these feature tests is useful because they serve as a template for testing many aspects of REDCap.
 
 ## Additional Information
 
