@@ -41,6 +41,9 @@ The following steps are intended to help set up a testing environment on a perso
 
 A developer needs the following software on their machine before installing this Developer Toolkit.
 
+- WSL (only required for Windows)
+  - If your institution does not give you full administrator access to your computer (like at VUMC), you may have to request temporary admin permissions in order to install WSL.
+  - Follow [this tutorial](https://www.youtube.com/watch?v=QM3mzEJCzjY).
 - Git (version control)
 
   - [For Windows](https://gitforwindows.org/)
@@ -49,7 +52,6 @@ A developer needs the following software on their machine before installing this
     - [MacPorts](https://www.macports.org/): `sudo port install git`
     - [Xcode](https://developer.apple.com/xcode/) - shipped as a binary package
   - [For Linux](https://git-scm.com/download/linux)
-
 - [Rancher Desktop](https://rancherdesktop.io/) - This is a drop-in replacement for [Docker Desktop](https://www.docker.com/products/docker-desktop/), which is still supported but not allowed at some organizations (like VUMC).
   - You may want to set Rancher to `Automatically start on login` and `Start in the background` under `Preferences -> Application -> Behavior`
   - If you've previously had Docker Desktop installed, you may have to run `docker context use default` before Rancher will work as expected.
@@ -57,35 +59,35 @@ A developer needs the following software on their machine before installing this
 - [VS Code](https://code.visualstudio.com/) - This is the recommended [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment), but others may be used as well (e.g. PhpStorm).  Be mindful that **Visual Studio Code** is most often referred to as **VS Code** in part to distinguish it from a different application simply called **Visual Studio** which we do not use.
 - [Cucumber Extension for VS Code by cucumber.io](https://marketplace.visualstudio.com/items?itemName=CucumberOpen.cucumber-official)
 
-### SSH Key in GitHub Account
+### Add SSH Key To GitHub Account
 
-You will need to place your public key on GitHub for this process to work correctly.
-
-To generate a key on your local machine, most of time the command is:
-
-```
-ssh-keygen
-```
-
-Please consult GitHub's SSH documentation for more information:
-[GitHub SSH Key Instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
-
-Specifically, you will need to
-
-- [Generate a new SSH Key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-- [Add the SSH Key to your GitHub Account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+1. Open a console (Git Bash on Windows, Terminal on Mac).
+1. Type `ssh-keygen` and press enter.
+1. Press enter again to accept the default path
+1. If prompted to `Overwrite` an existing key, enter `n` and press enter. If you were not prompted to `Overwrite`, you will be prompted for a passphrase.  Simply pressing enter and using empty passphrase is acceptable if you are comfortable accepting the risk that anyone gaining unauthorized access to the generated key file will also have partial access to your GitHub account.
+1. Type `cat ~/.ssh/id_ed25519.pub` and press enter to display the public half of the newly created key pair.
+1. Copy the `ssh-ed25519...` line that was displayed.  In most consoles this is accomplished my highlighting the line then right clicking.
+1. Log into GitHub.
+1. In the upper-right corner of any page on GitHub, click your profile picture, then click `Settings`.
+1. In the "Access" section of the sidebar, click `SSH and GPG keys`.
+1. Click `New SSH key`.
+1. In the "Title" field, add a descriptive label for the new key. For example, if you're using a personal laptop, you might call this key "Personal laptop".
+1. In the "Key" field, paste the `ssh-ed25519...` line you copied from the console.
+1. Click `Add SSH key`.
+1. If prompted, confirm access to your account on GitHub. 
 
 ### Developer Toolkit Installation Instructions:
 
-1. Open a bash compatible command prompt.  On Windows, `Git Bash` is supported.  On Mac, the built-in `Terminal` app is supported.
+1. Open a console (Git Bash on Windows, Terminal on Mac).
 1. Navigate to the directory where you want this project to live (e.g. your home directory).  If you don't have experience navigating between different directories in a terminal, ask the AI of your choice to teach you. 
 1. Run the following command to download a copy of this project to the current directory in your terminal:
     - `git clone git@github.com:vanderbilt-redcap/redcap_cypress_docker.git`
-    - If you see a failure message that says you do not have permissions or mentions a public key, you likely need to setup an [SSH Key in GitHub Account](#ssh-key-in-github-account).
+    - If you see a failure message that says you do not have permissions or mentions a public key, you likely skipped the `Add SSH Key To GitHub Account` section above.
+    - Run `cd redcap_cypress_docker` to navigate into the directory containing the newly cloned copy of this repo.
 1. Start the test environment by running the the following command:
     - `./run.sh`
     - If you see an error message about Docker not running or an "error during connect", you will need to start your chosen docker app (likely Rancher or Docker Desktop).  If it is started already, you may need to restart it and/or your computer.
-1. You will be prompted for your username and password to the REDCap Community website in order to download REDCap the first time you set up your test environment and after certain updates.
+1. You will be prompted for your username and password to the REDCap Community website in order to download REDCap the first time you set up your test environment and after certain updates. If the download fails after entering your credentials, email `redcap@vumc.org` and ask them to give your community account permission to download REDCap.
 1. The Cypress window should open after a few minutes, allowing you to select & run any RSVC feature test.  Cypress will open much faster on subsequent runs.
 
 ### Strategies For Developing & Debugging Features
