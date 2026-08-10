@@ -92,12 +92,13 @@ cd redcap_cypress
 # We add the "--no" arguments to simplify output for less technical users.
 # We don't really care about vulnerabilities since we're not hosting this project
 npm install --no-fund --no-audit 
-npm explore rctf -- npm run generate:hints
 
 rctfPath="../../rctf/"
 if [ -d "$rctfPath" ]; then
     npm link $rctfPath
 fi
+
+npm explore rctf -- npm run generate:hints
 
 # Ideally we'd call "npm run redcap_rsvc:move_files" here instead of the following lines,
 # but we can't do that currently because "redcap_rsvc:move_files" contains
