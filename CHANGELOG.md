@@ -12,7 +12,7 @@ Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress
 
 ## 17.2.3 - 2026-07-15
 
--  A [Supported Step Syntax](README.md#supported-step-syntax) section was added to make it easy to become familiar with the most commonly used step definitions. 
+- A [Supported Step Syntax](README.md#supported-step-syntax) section was added to make it easy to become familiar with the most commonly used step definitions. 
 
 ## 17.2.1 - 2026-07-03
 
