@@ -6,7 +6,7 @@ The toolkit was the brain child of Adam De Fouw, who deserves most of the credit
 
 This repository includes scripts to download all the necessary components for a developer to begin developing automated feature tests on their developer machine.  This toolkit is based on the industry-standard [Cypress Testing Framework](https://github.com/cypress-io/cypress/blob/develop/README.md).
 
-If you'd like to participate in our ongoing automation efforts, see our [Contribution Guidelines](CONTRIBUTING.md).
+If you'd like to ask questions or participate in our ongoing automation efforts, see our [Contribution Guidelines](CONTRIBUTING.md).
 
 
 ## What is Automated Testing?
