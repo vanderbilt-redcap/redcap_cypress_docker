@@ -10,6 +10,12 @@ The **REDCap Cypress Testing Ecosystem** includes the following [vanderbilt-redc
 
 Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new/choose) or [submit a PR](https://github.com/vanderbilt-redcap/redcap_cypress_docker/compare) if you notice changes that should be added.
 
+## TBD
+
+- Removed the following language in favor of `in the row labeled` language that works more reliably, and has been used exclusively by redcap_rsvc has used in these cases for many months:
+    - `in the "Main project settings" section`
+    - `in the "xyz" row in the "Enable optional modules and customizations" section` 
+
 ## 17.2.3 - 2026-07-15
 
 - A [Supported Step Syntax](README.md#supported-step-syntax) section was added to make it easy to become familiar with the most commonly used step definitions. 
