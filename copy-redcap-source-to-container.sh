@@ -17,4 +17,7 @@ elif ! test -f "$redcapSourcePath/Classes/REDCap.php"; then
   exit
 fi
 
+# On Windows, we must replace "/c/" with "C:/" or "docker cp" will incorrectly copy the parent folder into itself in the container, rather than the copying the folder contents of the folder as we desire.
+redcapSourcePath="${redcapSourcePath/#\/c\//C:/}"
+
 docker cp $redcapSourcePath/. redcap_docker-app-1:/var/www/html/redcap_$expectedREDCapVersion
