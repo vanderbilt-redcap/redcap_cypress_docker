@@ -10,8 +10,16 @@ The **REDCap Cypress Testing Ecosystem** includes the following [vanderbilt-redc
 
 Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new/choose) or [submit a PR](https://github.com/vanderbilt-redcap/redcap_cypress_docker/compare) if you notice changes that should be added.
 
-## TBD
+## 17.3.6 - 2026-08-13
 
+- Table content matching is now much more strict:
+    - The following applies to `I should see a table header and rows containing the following values` steps and variations thereof.
+    - Strictness was increased because scenarios were encountered where table matching steps would report success even though the table was not actually displayed as expected.
+    - Column & row order is now required to match.
+    - An empty first cell now means that the contents of that row in gherkin should be considered part of the previous row on the page. This has long been a common assumption among gherkin writers, but that was not actually the behavior until now. 
+    - The first header of the first row can no longer be blank.
+    - Cell content now requires a strict match. Previously a gherkin table cell value of `a c` would be incorrectly considered a successful match when `a b c` was the actual value present.
+    - Likely other more nuanced changes related to strict matching.
 - Removed the following language in favor of `in the row labeled` language that works more reliably, and has been used exclusively by redcap_rsvc has used in these cases for many months:
     - `in the "Main project settings" section`
     - `in the "xyz" row in the "Enable optional modules and customizations" section` 
