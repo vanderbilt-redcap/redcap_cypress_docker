@@ -6,7 +6,7 @@ The toolkit was the brain child of Adam De Fouw, who deserves most of the credit
 
 This repository includes scripts to download all the necessary components for a developer to begin developing automated feature tests on their developer machine.  This toolkit is based on the industry-standard [Cypress Testing Framework](https://github.com/cypress-io/cypress/blob/develop/README.md).
 
-If you'd like to participate in our ongoing automation efforts, see our [Contribution Guidelines](CONTRIBUTING.md).
+If you'd like to ask questions or participate in our ongoing automation efforts, see our [Contribution Guidelines](CONTRIBUTING.md).
 
 
 ## What is Automated Testing?
@@ -140,7 +140,7 @@ See the [Supported Step Syntax](#supported-step-syntax) section below to learn a
 
 ### Writing Tests For External Modules
 
-Completing the above steps will also allow you to create Cypress tests for External Modules. Any External Modules you wish to test should be placed in `redcap_source/modules`.  Any `.feature` files places inside an `automated-tests` directory in the root of each module will automatically become available in Cypress.  The following special behaviors will occur when they run:
+Completing the above steps will also allow you to create Cypress tests for External Modules as shown in [this video](https://www.youtube.com/watch?v=n83ZsRf7Abg). Any External Modules you wish to test should be placed in `redcap_source/modules`.  Any `.feature` files places inside an `automated-tests` directory in the root of each module will automatically become available in Cypress.  The following special behaviors will occur when they run:
 - The relevant module (and only that module) will be automatically enabled when the test starts.
 - File paths used in test steps will be considered relative to the `.feature` file that is being run.
 - More coming soon!  We currently have bandwidth to actively support module authors in writing cypress tests.  As you notice issues or have ideas for additional features and/or how to make module testing easier, please reach out by [creating an issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new).

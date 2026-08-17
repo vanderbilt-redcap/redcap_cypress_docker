@@ -17,4 +17,9 @@ elif ! test -f "$redcapSourcePath/Classes/REDCap.php"; then
   exit
 fi
 
+if [[ "$OSTYPE" == "msys" ]]; then
+  # On Windows & Git Bash, we must replace "/c/" with "C:\" or "docker cp" will incorrectly copy the parent folder into itself in the container, rather than the copying the contents of the folder as we desire.
+  redcapSourcePath=`cygpath -w "$redcapSourcePath"`
+fi
+
 docker cp $redcapSourcePath/. redcap_docker-app-1:/var/www/html/redcap_$expectedREDCapVersion
