@@ -86,7 +86,11 @@ A developer needs the following software on their machine before installing this
     - Run `cd redcap_cypress_docker` to navigate into the directory containing the newly cloned copy of this repo.
 1. Start the test environment by running the the following command:
     - `./run.sh`
-    - If you see an error message about Docker not running or an "error during connect", you will need to start your chosen docker app (likely Rancher or Docker Desktop).  If it is started already, you may need to restart it and/or your computer.
+      - If you see an error message about Docker not running or an "error during connect", you will need to start your chosen docker app (likely Rancher or Docker Desktop).  If it is started already, you may need to restart it and/or your computer.
+      - If you see an error message containing `'bash\r': No such file or directory`, run the following command:
+          ``` bash
+          [[ "$(git config --get --type=bool core.autocrlf)" == "true" ]] && dos2unix ./*.sh
+          ```
 1. You will be prompted for your username and password to the REDCap Community website in order to download REDCap the first time you set up your test environment and after certain updates. If the download fails after entering your credentials, email `redcap@vumc.org` and ask them to give your community account permission to download REDCap.
 1. The Cypress window should open after a few minutes, allowing you to select & run any RSVC feature test.  Cypress will open much faster on subsequent runs.
 
