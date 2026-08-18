@@ -162,6 +162,7 @@ When trying to determine what step syntax is supported for a given action you'd 
   - `target` can be `button`, `link`, `checkbox`, `icon`, or `radio`
   - The suffix ` in the row labeled "Some text in that row"` can be added to only look within a particular table row.
   - The suffix ` in the column labeled "Some text in that column" and the row labeled "Some text in that row"` can be added to only look within a certain table cell.
+- `I click on "Some clickable text"`
 - `I select "Some dropdown option" on the dropdown field labeled "Some text near the desired 'select' element"`
 - `I should see "Text expected anywhere on the page"`
 - `I should NOT see "Text that shouldn't exist anywhere on the page"`
