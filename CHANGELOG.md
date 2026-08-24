@@ -10,6 +10,13 @@ The **REDCap Cypress Testing Ecosystem** includes the following [vanderbilt-redc
 
 Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new/choose) or [submit a PR](https://github.com/vanderbilt-redcap/redcap_cypress_docker/compare) if you notice changes that should be added.
 
+## TBD
+
+- The following step has been added to support REDCap+ testing:
+    - `I enter a REDCap+ subscription key into the textarea field labeled "Enter a REDCap+ subscription key"`
+    - To disable REDCap+ tests, add/set 'skip_redcap_plus_tests' to true in cypress.env.json.
+    - To enable REDCap+ tests, either add/set 'redcap_plus_subscription_key' in cypress.env.json, or set the 'REDCAP_PLUS_SUBSCRIPTION_KEY' system environment variable.
+
 ## 17.3.6 - 2026-08-13
 
 - Table content matching is now much more strict:

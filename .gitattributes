@@ -1,0 +1,3 @@
+# Checkout bash scripts without carriage returns so they work in WSL in addition to Git Bash.
+# Ryan & Andrew are testing Cypress in WSL, even though they're aware it is technically unsupported.
+*.sh text eol=lf

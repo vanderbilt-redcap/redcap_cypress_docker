@@ -52,7 +52,7 @@ A developer needs the following software on their machine before installing this
     - [MacPorts](https://www.macports.org/): `sudo port install git`
     - [Xcode](https://developer.apple.com/xcode/) - shipped as a binary package
   - [For Linux](https://git-scm.com/download/linux)
-- [Rancher Desktop](https://rancherdesktop.io/) - This is a drop-in replacement for [Docker Desktop](https://www.docker.com/products/docker-desktop/), which is still supported but not allowed at some organizations (like VUMC).
+- [Rancher Desktop](https://rancherdesktop.io/) - We recommend Rancher Desktop because is a drop-in replacement for [Docker Desktop](https://www.docker.com/products/docker-desktop/) with friendlier licensing. Docker Desktop is still supported, but it is not allowed at some institutions (like VUMC).
   - You may want to set Rancher to `Automatically start on login` and `Start in the background` under `Preferences -> Application -> Behavior`
   - If you've previously had Docker Desktop installed, you may have to run `docker context use default` before Rancher will work as expected.
 - [Node.js](https://nodejs.org/en/download) - available for Windows, macOS, Linux
@@ -162,6 +162,7 @@ When trying to determine what step syntax is supported for a given action you'd 
   - `target` can be `button`, `link`, `checkbox`, `icon`, or `radio`
   - The suffix ` in the row labeled "Some text in that row"` can be added to only look within a particular table row.
   - The suffix ` in the column labeled "Some text in that column" and the row labeled "Some text in that row"` can be added to only look within a certain table cell.
+- `I click on "Some clickable text"`
 - `I select "Some dropdown option" on the dropdown field labeled "Some text near the desired 'select' element"`
 - `I should see "Text expected anywhere on the page"`
 - `I should NOT see "Text that shouldn't exist anywhere on the page"`
