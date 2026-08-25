@@ -12,6 +12,9 @@ Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress
 
 ## TBD
 
+- Any steps using the work "enter" to enter text have been normalized to remove the existing text first.
+    - This effectively makes "enter" and "clear and enter" behave identically.  We plan to remove the "clear and" prefix at a later date to help normalize language.
+    - The reasoning behind this change is that manual testers generally interpret "enter" to mean "clear and enter", creating a discrepancy between manual & automated test outcomes. Making all "enter" steps replace any preexisting text resolves this discrepancy.
 - The following step has been added to support REDCap+ testing:
     - `I enter a REDCap+ subscription key into the textarea field labeled "Enter a REDCap+ subscription key"`
     - To disable REDCap+ tests, add/set 'skip_redcap_plus_tests' to true in cypress.env.json.
