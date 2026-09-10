@@ -13,6 +13,7 @@ Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress
 ## TBD
 
 - Removed infrequently used steps like `I verify Choice of "1, One" in the open "Edit Field" dialog box` in favor of common steps like `I verify "1, One" is within the textarea field labeled "Choices"`
+- Removed the following step which is not used by RSVC and should likely be replaced with more general steps: `I verify I cannot change the Event Name of "X" while in production`
 
 ## 17.3.6 - 2026-08-27
 
