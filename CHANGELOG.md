@@ -10,6 +10,10 @@ The **REDCap Cypress Testing Ecosystem** includes the following [vanderbilt-redc
 
 Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new/choose) or [submit a PR](https://github.com/vanderbilt-redcap/redcap_cypress_docker/compare) if you notice changes that should be added.
 
+## TBD
+
+- Removed infrequently used steps like `I verify Choice of "1, One" in the open "Edit Field" dialog box` in favor of common steps like `I verify "1, One" is within the textarea field labeled "Choices"`
+
 ## 17.3.6 - 2026-08-27
 
 - Table content matching is now much more strict:
