@@ -12,12 +12,10 @@ Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress
 
 ## TBD
 
-- The following step has been added to support REDCap+ testing:
-    - `I enter a REDCap+ subscription key into the textarea field labeled "Enter a REDCap+ subscription key"`
-    - To disable REDCap+ tests, add/set 'skip_redcap_plus_tests' to true in cypress.env.json.
-    - To enable REDCap+ tests, either add/set 'redcap_plus_subscription_key' in cypress.env.json, or set the 'REDCAP_PLUS_SUBSCRIPTION_KEY' system environment variable.
+- Removed infrequently used steps like `I verify Choice of "1, One" in the open "Edit Field" dialog box` in favor of common steps like `I verify "1, One" is within the textarea field labeled "Choices"`
+- Removed the following step which is not used by RSVC and should likely be replaced with more general steps: `I verify I cannot change the Event Name of "X" while in production`
 
-## 17.3.6 - 2026-08-13
+## 17.3.6 - 2026-08-27
 
 - Table content matching is now much more strict:
     - The following applies to `I should see a table header and rows containing the following values` steps and variations thereof.
@@ -30,6 +28,15 @@ Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress
 - Removed the following language in favor of `in the row labeled` language that works more reliably, and has been used exclusively by redcap_rsvc has used in these cases for many months:
     - `in the "Main project settings" section`
     - `in the "xyz" row in the "Enable optional modules and customizations" section` 
+- Steps using the language "enter Choices" now throw an error recommending the following syntax instead:
+    - `I enter "1, One{enter}2, Two" in the textarea field labeled "Choices"`
+- Any steps using the work "enter" to enter text have been normalized to remove the existing text first.
+    - This effectively makes "enter" and "clear and enter" behave identically.  We plan to remove the "clear and" prefix at a later date to help normalize language.
+    - The reasoning behind this change is that manual testers generally interpret "enter" to mean "clear and enter", creating a discrepancy between manual & automated test outcomes. Making all "enter" steps replace any preexisting text resolves this discrepancy.
+- The following step has been added to support REDCap+ testing:
+    - `I enter a REDCap+ subscription key into the textarea field labeled "Enter a REDCap+ subscription key"`
+    - To disable REDCap+ tests, add/set 'skip_redcap_plus_tests' to true in cypress.env.json.
+    - To enable REDCap+ tests, either add/set 'redcap_plus_subscription_key' in cypress.env.json, or set the 'REDCAP_PLUS_SUBSCRIPTION_KEY' system environment variable.
 
 ## 17.2.3 - 2026-07-15
 

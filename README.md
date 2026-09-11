@@ -98,6 +98,8 @@ A developer needs the following software on their machine before installing this
 
 1. Execution can be paused in the middle of a feature to check details or perform manual actions by adding the following step: `And I want to pause`.  To continue execution, press the play button in the Cypress UI.
 
+1. Most Cypress test failures are caused by steps executing faster than the app actually supports. The most common solution is to use a `should see` or `should NOT see` step to instruct Cypress to wait for the previous action to finish executing and updating the UI before continuing to the next step. See the [Supported Step Syntax](#supported-step-syntax) section for multiple examples of such steps. For troubleshooting `I wait for X seconds` steps can be also useful, but they are not recommended as a permanent solution in most cases as they often unnecessarily slow down test execution.
+
 ### Updating The Test Environment:
 
 You should perform the following steps periodically to ensure your local environment includes the latest changes:
