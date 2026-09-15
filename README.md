@@ -165,11 +165,14 @@ When trying to determine what step syntax is supported for a given action you'd 
   - The suffix ` in the row labeled "Some text in that row"` can be added to only look within a particular table row.
   - The suffix ` in the column labeled "Some text in that column" and the row labeled "Some text in that row"` can be added to only look within a certain table cell.
 - `I click on "Some clickable text"`
+  - The suffix ` in the row labeled "Some text in that row"` can be added to only look within a particular table row.
+  - The suffix ` in the column labeled "Some text in that column" and the row labeled "Some text in that row"` can be added to only look 
 - `I select "Some dropdown option" on the dropdown field labeled "Some text near the desired 'select' element"`
 - `I should see "Text expected anywhere on the page"`
 - `I should NOT see "Text that shouldn't exist anywhere on the page"`
 - `I enter "Some text" into the (target) labeled "Some text near the desired element"`
   - `target` can be `input field` or `textarea`
+- `I verify "Some Value" is within the input field labeled "Some Label"`
 - `I should see a table header and rows containing the following values in a table:`
   - See [usage examples in redcap_rsvc](https://github.com/search?type=code&q=repo%3Avanderbilt-redcap%2Fredcap_rsvc+path%3A%2F%5EFeature+Tests%5C%2F%2F+%22I%20should%20see%20a%20table%20header%20and%20rows%20containing%20the%20following%20values%20in%20a%20table:%22) for how to specify the desired headers & rows.
 - `I upload a "csv" format file located at "path/to/file.csv", by clicking the button near "Choose File" to browse for the file, and clicking the button labeled "Upload File" to upload the file`
