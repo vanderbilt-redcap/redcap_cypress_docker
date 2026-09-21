@@ -114,7 +114,7 @@ zip_file="./redcap${redcap_version}.zip"
 
 # Check if the file exists
 if [ -e "$zip_file" ]; then
-    echo "Zip file for REDCap ${redcap_version} already exists.  We'll use this to zip to install."
+    echo "Zip file for REDCap ${redcap_version} already exists.  We'll use this to zip to install: $zip_file"
     attempt_unzip_redcap "${zip_file}"
 else
     echo "To download REDCap, you must login to REDCap Community site (https://redcap.vanderbilt.edu/community/) to verify you have valid license."
@@ -132,12 +132,13 @@ else
     url="https://redcap.vumc.org/plugins/redcap_consortium/versions.php"
 
     # Perform the curl request with username and password
-    curl -o ${zip_file} --data username=$username --data-urlencode password=$password --data version=$redcap_version --data install=1 -X POST ${url}
+    curl -o ${zip_file}.tmp --data username=$username --data-urlencode password=$password --data version=$redcap_version --data install=1 -X POST ${url}
 
     if [ $? -ne 0 ]; then
         echo REDCap download failed.  Please try again.
         exit 1
     fi
 
+    mv ${zip_file}.tmp ${zip_file}
     attempt_unzip_redcap "${zip_file}"
 fi

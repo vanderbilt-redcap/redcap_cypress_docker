@@ -142,9 +142,10 @@ See the [Supported Step Syntax](#supported-step-syntax) section below to learn a
 
 ### Writing Tests For External Modules
 
-Completing the above steps will also allow you to create Cypress tests for External Modules as shown in [this video](https://www.youtube.com/watch?v=n83ZsRf7Abg). Any External Modules you wish to test should be placed in `redcap_source/modules`.  Any `.feature` files places inside an `automated-tests` directory in the root of each module will automatically become available in Cypress.  The following special behaviors will occur when they run:
+Completing the above steps will also allow you to create Cypress tests for External Modules as shown in [this video](https://www.youtube.com/watch?v=n83ZsRf7Abg). Any External Modules you wish to test should be placed in `redcap_source/modules`.  Any `.feature` files places inside an `automated-tests` directory in the root of each module will become available each time Cypress is restarted.  The following special behaviors will occur when they run:
 - The relevant module (and only that module) will be automatically enabled when the test starts.
 - File paths used in test steps will be considered relative to the `.feature` file that is being run.
+- Each module can define its own custom Cypress step definitions by placing one or more `.js` files in an `automated-tests/step_definitions` directory. [Search RCTF for the keyword "Given"](https://github.com/search?q=repo%3Avanderbilt-redcap%2Frctf+path%3A%2F%5Estep_definitions%5C%2F%2F+Given&type=code) for many examples of step definitions we define.
 - More coming soon!  We currently have bandwidth to actively support module authors in writing cypress tests.  As you notice issues or have ideas for additional features and/or how to make module testing easier, please reach out by [creating an issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new).
 
 A working example test can be found in the [Module Development Examples module](https://github.com/vanderbilt-redcap/external-module-framework-docs/tree/main/example_modules/module-development-examples_v1.0/automated-tests/file-settings.feature).
@@ -165,11 +166,14 @@ When trying to determine what step syntax is supported for a given action you'd 
   - The suffix ` in the row labeled "Some text in that row"` can be added to only look within a particular table row.
   - The suffix ` in the column labeled "Some text in that column" and the row labeled "Some text in that row"` can be added to only look within a certain table cell.
 - `I click on "Some clickable text"`
+  - The suffix ` in the row labeled "Some text in that row"` can be added to only look within a particular table row.
+  - The suffix ` in the column labeled "Some text in that column" and the row labeled "Some text in that row"` can be added to only look 
 - `I select "Some dropdown option" on the dropdown field labeled "Some text near the desired 'select' element"`
 - `I should see "Text expected anywhere on the page"`
 - `I should NOT see "Text that shouldn't exist anywhere on the page"`
 - `I enter "Some text" into the (target) labeled "Some text near the desired element"`
   - `target` can be `input field` or `textarea`
+- `I verify "Some Value" is within the input field labeled "Some Label"`
 - `I should see a table header and rows containing the following values in a table:`
   - See [usage examples in redcap_rsvc](https://github.com/search?type=code&q=repo%3Avanderbilt-redcap%2Fredcap_rsvc+path%3A%2F%5EFeature+Tests%5C%2F%2F+%22I%20should%20see%20a%20table%20header%20and%20rows%20containing%20the%20following%20values%20in%20a%20table:%22) for how to specify the desired headers & rows.
 - `I upload a "csv" format file located at "path/to/file.csv", by clicking the button near "Choose File" to browse for the file, and clicking the button labeled "Upload File" to upload the file`
