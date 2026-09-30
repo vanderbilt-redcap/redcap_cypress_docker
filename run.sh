@@ -91,6 +91,9 @@ cd redcap_cypress
 # Ensure the correct version of REDCap is used even if we're switching back and forth between redcap_cypress branches.
 awk '{ gsub(/"redcap_version": ".*",/, "\"redcap_version\": \"'$redcapVersion'\","); print }' cypress.env.json > awk-temp && mv awk-temp cypress.env.json
 
+# Ensure cypress.config.js has been updated to support the new EM test folder naming standard
+awk '{ gsub(/\/automated-tests\//, "/automated[-_]tests/"); print }' cypress.config.js > awk-temp && mv awk-temp cypress.config.js
+
 # We add the "--no" arguments to simplify output for less technical users.
 # We don't really care about vulnerabilities since we're not hosting this project
 npm install --no-fund --no-audit 
