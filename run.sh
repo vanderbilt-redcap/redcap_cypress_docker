@@ -47,9 +47,6 @@ elif [ ! -d $redcapSourcePath ]; then
     ./download_redcap.sh $redcapVersion
 fi
 
-# Ensure the correct version of REDCap is used even if we're switching back and forth between redcap_cypress branches.
-awk '{ gsub(/"redcap_version": ".*",/, "\"redcap_version\": \"'$redcapVersion'\","); print }' redcap_cypress/cypress.env.json > awk-temp && mv awk-temp redcap_cypress/cypress.env.json
-
 cd redcap_docker
 docker compose up -d
 cd ..
@@ -90,6 +87,10 @@ if [ $htmlDirLineCount = 0 ]; then
 fi
 
 cd redcap_cypress
+
+# Ensure the correct version of REDCap is used even if we're switching back and forth between redcap_cypress branches.
+awk '{ gsub(/"redcap_version": ".*",/, "\"redcap_version\": \"'$redcapVersion'\","); print }' cypress.env.json > awk-temp && mv awk-temp cypress.env.json
+
 # We add the "--no" arguments to simplify output for less technical users.
 # We don't really care about vulnerabilities since we're not hosting this project
 npm install --no-fund --no-audit 
