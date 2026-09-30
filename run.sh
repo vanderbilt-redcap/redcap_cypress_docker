@@ -76,6 +76,7 @@ if [ $htmlDirLineCount = 0 ]; then
     else
         # This could be an initial run or a newly added redcap version.
         echo Copying new REDCap version directories into the docker container...
+        echo If this step hangs, consider adding a virus scanner exception for your redcap_cypress_docker directory.
         
         # This command copies the current redcap_v* dir and every other file under redcap_source except other redcap_v* dirs.
         ls -1| grep -v redcap_v | cat - <(echo redcap_v$redcapVersion) | grep -v external_modules | grep -v modules | xargs -I {} docker cp "{}" redcap_docker-app-1:/var/www/html
