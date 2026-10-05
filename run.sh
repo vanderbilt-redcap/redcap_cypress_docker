@@ -47,9 +47,6 @@ elif [ ! -d $redcapSourcePath ]; then
     ./download_redcap.sh $redcapVersion
 fi
 
-# Ensure the correct version of REDCap is used even if we're switching back and forth between redcap_cypress branches.
-awk '{ gsub(/"redcap_version": ".*",/, "\"redcap_version\": \"'$redcapVersion'\","); print }' redcap_cypress/cypress.env.json > awk-temp && mv awk-temp redcap_cypress/cypress.env.json
-
 cd redcap_docker
 docker compose up -d
 cd ..
@@ -76,6 +73,7 @@ if [ $htmlDirLineCount = 0 ]; then
     else
         # This could be an initial run or a newly added redcap version.
         echo Copying new REDCap version directories into the docker container...
+        echo If this step hangs, consider adding a virus scanner exception for your redcap_cypress_docker directory.
         
         # This command copies the current redcap_v* dir and every other file under redcap_source except other redcap_v* dirs.
         ls -1| grep -v redcap_v | cat - <(echo redcap_v$redcapVersion) | grep -v external_modules | grep -v modules | xargs -I {} docker cp "{}" redcap_docker-app-1:/var/www/html
@@ -89,6 +87,13 @@ if [ $htmlDirLineCount = 0 ]; then
 fi
 
 cd redcap_cypress
+
+# Ensure the correct version of REDCap is used even if we're switching back and forth between redcap_cypress branches.
+awk '{ gsub(/"redcap_version": ".*",/, "\"redcap_version\": \"'$redcapVersion'\","); print }' cypress.env.json > awk-temp && mv awk-temp cypress.env.json
+
+# Ensure cypress.config.js has been updated to support the new EM test folder naming standard
+awk '{ gsub(/\/automated-tests\//, "/automated[-_]tests/"); print }' cypress.config.js > awk-temp && mv awk-temp cypress.config.js
+
 # We add the "--no" arguments to simplify output for less technical users.
 # We don't really care about vulnerabilities since we're not hosting this project
 npm install --no-fund --no-audit 

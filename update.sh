@@ -17,6 +17,7 @@ commitsBehindMain=`git log --oneline ..FETCH_HEAD | wc -l`
 if [ $commitsBehindMain != 0 ]; then
     echo
     echo Please either checkout the main branch for redcap_cypress_docker, or merge it into your working branch.
+    echo This is not performed automatically to avoid interfering with any changes you might have made on your local.
     exit
 fi
 
@@ -29,22 +30,15 @@ fi
 echo
 echo Updating redcap_rsvc...
 cd redcap_cypress/redcap_rsvc
+git pull
 git fetch https://github.com/vanderbilt-redcap/redcap_rsvc staging
 rsvcBranchName=`git rev-parse --abbrev-ref HEAD`
-if [ "$rsvcBranchName" = "staging" ]; then
-    # Developers shouldn't be working directly in this branch.
-    # This may be an initial run before any development has started.
-    # Regardless, just checkout the latest
-    git -c advice.detachedHead=false checkout FETCH_HEAD > /dev/null
-else
-    commitsBehindStaging=`git log --oneline ..FETCH_HEAD | wc -l`
-    if [ $commitsBehindStaging != 0 ]; then
-        set +x
-        echo
-        echo Please merge the latest from the 'staging' branch into your redcap_rsvc branch.
-        echo This is not performed automatically to avoid interfering with any active development. 
-        exit
-    fi
+commitsBehindMaster=`git log --oneline ..FETCH_HEAD | wc -l`
+if [ $commitsBehindMaster != 0 ]; then
+    echo
+    echo Please either checkout the staging branch of redcap_rsvc, or merge the latest changes from staging into your current branch.
+    echo This is not performed automatically to avoid interfering with any changes you might have made on your local.
+    exit
 fi
 cd ../..
 
@@ -56,7 +50,8 @@ git fetch https://github.com/vanderbilt-redcap/redcap_cypress master
 commitsBehindMaster=`git log --oneline ..FETCH_HEAD | wc -l`
 if [ $commitsBehindMaster != 0 ]; then
     echo
-    echo To use this update script, please either checkout the master branch of redcap_cypress, or merge the latest changes from master into your current branch.
+    echo Please either checkout the master branch of redcap_cypress, or merge the latest changes from master into your current branch.
+    echo This is not performed automatically to avoid interfering with any changes you might have made on your local.
     exit
 fi
 
@@ -75,6 +70,7 @@ commitsBehindMain=`git log --oneline ..FETCH_HEAD | wc -l`
 if [ $commitsBehindMain != 0 ]; then
     echo
     echo Please either checkout the main branch for redcap_docker, or merge it into your working branch.
+    echo This is not performed automatically to avoid interfering with any changes you might have made on your local.
     exit
 fi
 
