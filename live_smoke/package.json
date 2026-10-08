@@ -1,0 +1,15 @@
+{
+  "name": "redcap-live-smoke",
+  "private": true,
+  "description": "Read-only smoke checks for a live REDCap instance. Does NOT use RCTF and never touches the database.",
+  "scripts": {
+    "login": "CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-https://stagerc2.rarediseasesnetwork.org} node login.js",
+    "logout": "CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-https://stagerc2.rarediseasesnetwork.org} node login.js --forget",
+    "test": "CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-https://stagerc2.rarediseasesnetwork.org} cypress run --browser chrome",
+    "open": "CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-https://stagerc2.rarediseasesnetwork.org} cypress open --e2e --browser chrome"
+  },
+  "devDependencies": {
+    "cypress": "15.21.1",
+    "playwright-core": "1.56.1"
+  }
+}
