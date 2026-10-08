@@ -22,7 +22,20 @@ npm test          # public checks + authenticated checks
 npm run logout    # delete the saved session from the Keychain
 ```
 
-Without a saved session, the authenticated spec is skipped. When the session expires
+## Specs
+
+| Spec | What it checks | Login |
+|---|---|---|
+| `01-public.cy.js` | SSO redirect, `/api/` responds, `/surveys/` reports the version, static assets load (plain HTTP, no browser pages) | No |
+| `02-authenticated.cy.js` | My Projects loads for the signed-in user | Yes |
+| `03-browse-project.cy.js` | Opens the first project on My Projects and visits Project Home, Record Status Dashboard, Codebook and Data Exports/Reports, pausing 3s on each (about 35s, useful for a demo video) | Yes |
+
+`03-browse-project` only views pages, but REDCap logs each page view, and the pages show the
+project's name, record IDs and fields. Keep that in mind before recording it to Cypress Cloud.
+To record a video locally, set `CYPRESS_video=true` (the `--config video=true` flag doesn't
+override the project setting).
+
+Without a saved session, the authenticated specs are skipped. When the session expires
 (REDCap auto-logout or Shibboleth session lifetime), the run fails with
 "Saved session was rejected"; run `npm run login` again.
 
