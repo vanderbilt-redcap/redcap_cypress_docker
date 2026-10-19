@@ -124,21 +124,19 @@ The `master` branch of `redcap_cypress` will be checked out by default.  This wi
 1. If you have cypress open, close it.
 1. Run `./run.sh`
 
-### Contributing To RSVC Feature Tests:
+### Running Your Own Tests Instead of RSVC's:
 
-1. Create your own fork of redcap_rsvc that is based upon https://github.com/vanderbilt-redcap/redcap_rsvc
-
-2. Configure the cloned redcap_rsvc repository as needed to match your own Fork.
-
-```
-cd redcap_cypress/redcap_rsvc
-git remote rename origin upstream
-git remote add origin <your_fork_url_here>
-```
-
-Having your own fork enables you to issue pull requests to vanderbilt-redcap/redcap_rsvc after you complete a feature.
+If you have created your own feature tests you'd like to run instead of those in [redcap_rsvc](https://github.com/vanderbilt-redcap/redcap_rsvc), they can be run by editing `redcap_cypress/cypress.config.js` and replacing `specPattern` with the path to the directory of `.feature` files you'd like to run. It is also possible to create your own step definitions in addition to what [RCTF](https://github.com/vanderbilt-redcap/rctf) provides, and make them available to your feature tests by placing them in one or more `.js` files under `redcap_cypress/support/step_definitions/`.
 
 See the [Supported Step Syntax](#supported-step-syntax) section below to learn about all the various steps you can use within your feature tests.
+
+### Contributing To RSVC Feature Tests or RCTF Step Definitions:
+
+Please keep in mind that RSVC may be interested in adopting any feature tests you write so that they benefit the entire REDCap community...and so that you don't have to manage them yourself anymore! Feel free to create a [pull request](https://github.com/vanderbilt-redcap/redcap_rsvc/pulls) with any suggestions, or if you're not ready for that simply create a [GitHub issue](https://github.com/vanderbilt-redcap/redcap_rsvc/issues) to start the discussion for whatever idea you have in mind. The same suggestions apply for contributing step definitions back to the [RCTF repo](https://github.com/vanderbilt-redcap/rctf).
+
+Kudos to Mintoo & Sumon for adding their own D-tier tests to RSVC and making them available via the following forks! We are considering incorporating them into RSVC:
+- https://github.com/uofu-ccts/redcap_rsvc/tree/staging/Feature%20Tests/D
+- https://github.com/CCTC-team/redcap_rsvc/tree/redcap_val/Feature%20Tests/D
 
 ### Writing Tests For External Modules
 
