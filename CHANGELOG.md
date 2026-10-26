@@ -10,6 +10,17 @@ The **REDCap Cypress Testing Ecosystem** includes the following [vanderbilt-redc
 
 Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new/choose) or [submit a PR](https://github.com/vanderbilt-redcap/redcap_cypress_docker/compare) if you notice changes that should be added.
 
+## TBD
+
+- Removed steps that start with `I add an event named...` because they were broken by REDCap updates. They should be replaced with the following more generic steps:
+    - ```
+        Given I enter "4" into the input field labeled "Days"
+        And I enter "Event 4" into the input field labeled "Descriptive name for this event"
+        Then I click on the button labeled "Add new event"
+      ```
+- Removed steps like `I click on the Edit/Delete image for the event named "Event X"` because they were broken by REDCap updates. They should be replaced with steps like the following: `I click on the icon labeled "Delete" in the row labeled "Event 1"`
+
+
 ## 17.5.0 - 2026-09-21
 
 - Removed infrequently used steps like `I verify Choice of "1, One" in the open "Edit Field" dialog box` in favor of common steps like `I verify "1, One" is within the textarea field labeled "Choices"`

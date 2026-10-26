@@ -100,6 +100,8 @@ A developer needs the following software on their machine before installing this
 
 1. Most Cypress test failures are caused by steps executing faster than the app actually supports. The most common solution is to use a `should see` or `should NOT see` step to instruct Cypress to wait for the previous action to finish executing and updating the UI before continuing to the next step. See the [Supported Step Syntax](#supported-step-syntax) section for multiple examples of such steps. For troubleshooting `I wait for X seconds` steps can be also useful, but they are not recommended as a permanent solution in most cases as they often unnecessarily slow down test execution.
 
+1. When running Cypress interactively, tests lasting multiple minutes will slow down due to the sheer volume of steps being rendered. To achieve decent performance, disable `Auto-scrolling` and click the scenario name on the left to hide step details and only display the scenario names are displayed.
+
 ### Updating The Test Environment:
 
 You should perform the following steps periodically to ensure your local environment includes the latest changes:
