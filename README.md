@@ -102,6 +102,8 @@ A developer needs the following software on their machine before installing this
 
 1. When running Cypress interactively, tests lasting multiple minutes will slow down due to the sheer volume of steps being rendered. To achieve decent performance, disable `Auto-scrolling` and click the scenario name on the left to hide step details and only display the scenario names are displayed.
 
+1. To view all emails being sent by the Cypress REDCap instance, navigate to [http://localhost:8025/](http://localhost:8025/).
+
 ### Updating The Test Environment:
 
 You should perform the following steps periodically to ensure your local environment includes the latest changes:
