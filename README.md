@@ -144,13 +144,13 @@ Kudos to Mintoo & Sumon for adding their own D-tier tests to RSVC and making the
 
 ### Writing Tests For External Modules
 
-Completing the above steps will also allow you to create Cypress tests for External Modules as shown in [this video](https://www.youtube.com/watch?v=n83ZsRf7Abg). Any External Modules you wish to test should be placed in `redcap_source/modules`.  Any `.feature` files places inside an `automated-tests` directory in the root of each module will become available each time Cypress is restarted.  The following special behaviors will occur when they run:
+Completing the above steps will also allow you to create Cypress tests for External Modules as shown in [this video](https://www.youtube.com/watch?v=n83ZsRf7Abg). Any External Modules you wish to test should be placed in `redcap_source/modules`.  Any `.feature` files placed inside an `automated_tests` directory in the root of each module will be available in Cypress.  The following special behaviors will occur when they run:
 - The relevant module (and only that module) will be automatically enabled when the test starts.
 - File paths used in test steps will be considered relative to the `.feature` file that is being run.
-- Each module can define its own custom Cypress step definitions by placing one or more `.js` files in an `automated-tests/step_definitions` directory. [Search RCTF for the keyword "Given"](https://github.com/search?q=repo%3Avanderbilt-redcap%2Frctf+path%3A%2F%5Estep_definitions%5C%2F%2F+Given&type=code) for many examples of step definitions we define.
+- Each module can define its own custom Cypress step definitions by placing one or more `.js` files in an `automated_tests/step_definitions` directory. [Search RCTF for the keyword "Given"](https://github.com/search?q=repo%3Avanderbilt-redcap%2Frctf+path%3A%2F%5Estep_definitions%5C%2F%2F+Given&type=code) for many examples of step definitions we define.
 - More coming soon!  We currently have bandwidth to actively support module authors in writing cypress tests.  As you notice issues or have ideas for additional features and/or how to make module testing easier, please reach out by [creating an issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new).
 
-A working example test can be found in the [Module Development Examples module](https://github.com/vanderbilt-redcap/external-module-framework-docs/tree/main/example_modules/module-development-examples_v1.0/automated-tests/file-settings.feature).
+A working example test can be found in the [Module Development Examples module](https://github.com/vanderbilt-redcap/external-module-framework-docs/tree/main/example_modules/module-development-examples_v1.0/automated_tests/file-settings.feature).
 
 See the [Supported Step Syntax](#supported-step-syntax) section below to learn about all the various steps you can use within your feature tests.
 
