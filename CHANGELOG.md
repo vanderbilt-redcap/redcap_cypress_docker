@@ -10,7 +10,7 @@ The **REDCap Cypress Testing Ecosystem** includes the following [vanderbilt-redc
 
 Please [open a GitHub issue](https://github.com/vanderbilt-redcap/redcap_cypress_docker/issues/new/choose) or [submit a PR](https://github.com/vanderbilt-redcap/redcap_cypress_docker/compare) if you notice changes that should be added.
 
-## TBD
+## 17.5.9 - 2026-11-02
 
 - Removed steps that start with `I add an event named...` because they were broken by REDCap updates. They should be replaced with the following more generic steps:
     - ```
