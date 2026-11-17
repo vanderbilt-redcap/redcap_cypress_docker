@@ -3,14 +3,16 @@
   "search.useIgnoreFiles": false, // Allow Ctrl-P to find files within redcap_rsvc (included in redcap_cypress/.gitignore)
   "search.exclude": {
     "redcap_cypress/cypress/fixtures": true,
-    "redcap_source": true
+    "redcap_source": true,
+    "!redcap_source/modules/*/automated-tests": true,
+    "!redcap_source/modules/*/automated_tests": true,
   },
   "cucumber.features": [
     "redcap_cypress/redcap_rsvc/Feature Tests/**/*.feature", // RSVC features
-    "redcap_cypress/cypress/features/*.feature"              // Standard feature folder
+    "redcap_cypress/cypress/features/*.feature",             // Standard feature folder
   ],
   "cucumber.glue": [
     "redcap_cypress/node_modules/rctf/step_definitions/*.js",           // RCTF step definitions
-    "redcap_cypress/node_modules/rctf/step_definitions/support/*.js"    // Parameter types (VERY important)
-  ]
+    "redcap_cypress/node_modules/rctf/step_definitions/support/*.js",   // Parameter types (VERY important)
+  ],
 }
